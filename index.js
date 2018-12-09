@@ -7,6 +7,8 @@ const log = require('./logger');
 		await dijnet.login(process.env.DIJNET_USER, process.env.DIJNET_PASS);
 		await dijnet.sleep(3);
 		await dijnet.szamla_search();
+		await dijnet.sleep(3);
+		await dijnet.szamla_search_submit();
 	} catch (error) {
 		log.error(error.message);
 	}
