@@ -1,4 +1,6 @@
 const setTimeoutP = require('util').promisify(setTimeout);
+const cheerio = require('cheerio');
+const deburr = require('lodash.deburr');
 const got = require('got');
 const { CookieJar } = require('tough-cookie');
 const log = require('./logger');
@@ -44,6 +46,49 @@ function szamla_search_submit() {
 		'vfw_form=szamla_search_submit&vfw_coll=szamla_search_params&regszolgid=&szlaszolgid=&datumtol=&datumig=');
 }
 
+function normalize(s) {
+	// A probléma az, hogy nagyon fura encoding-gal jönnek az ő/ű betűk, és sehogy nem tudom őket olvashatóvá konvertálni.
+	// Így azt találtam ki, hogy eltávolítom az ékezeteket (á->a), a nem-betű karaktereket meg kidobálom.
+	return deburr(s).replace(/[^a-z0-9\-_]+/gi, ' ').trim();
+}
+
+function parse_szamla_list(body) {
+	const $ = cheerio.load(body, { normalizeWhitespace: true });
+	const cols = [];
+	$('.szamla_table th').each((_, th) => cols.push(normalize($(th).text())));
+	/*
+		'Szolgaltato',
+		'Szamlakibocsatoi azonosito',
+		'Szamlaszam',
+		'Kiallitas datuma',
+		'Szamla vegosszege',
+		'Fizetesi hatarid',
+		'Fizetend',
+		'Allapot'
+	*/
+	function indexOfOrThrowError(col) {
+		const i = cols.indexOf(col);
+		if (i === -1) {
+			throw new Error(`Érvénytelen lap, nem tartalmazza a(z) ${col} oszlopot`);
+		}
+		return i;
+	}
+	const providerIndex = indexOfOrThrowError('Szolgaltato');
+	const customNameIndex = indexOfOrThrowError('Szamlakibocsatoi azonosito');
+	const dateIndex = indexOfOrThrowError('Kiallitas datuma');
+	const invoices = [];
+	$('.szamla_table tbody tr').each((i, tr) => {
+		const invoice = {
+			rowid: $(tr).html().toString().match(/rowid=(\d+)/)[1],
+			provider: normalize($(tr.childNodes[providerIndex]).text()),
+			customName: normalize($(tr.childNodes[customNameIndex]).text()),
+			date: $(tr.childNodes[dateIndex]).text()
+		};
+		invoices.push(invoice);
+	});
+	return invoices;
+}
+
 async function sleep(s) {
 	log.trace('Várunk %d másorpercet', s);
 	await setTimeoutP(s * 1000);
@@ -54,6 +99,7 @@ module.exports = {
 	login,
 	szamla_search,
 	szamla_search_submit,
+	parse_szamla_list,
 	// util
 	sleep
 };

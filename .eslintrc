@@ -3,6 +3,7 @@
 		"brace-style": 0,
 		"camelcase": 0,
 		"capitalized-comments": 0,
-		"object-curly-spacing": 0
+		"object-curly-spacing": 0,
+		"quote-props": 0
 	}
 }
