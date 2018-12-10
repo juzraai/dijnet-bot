@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const setTimeoutP = require('util').promisify(setTimeout);
 const cheerio = require('cheerio');
 const deburr = require('lodash.deburr');
@@ -6,11 +7,11 @@ const got = require('got');
 const { CookieJar } = require('tough-cookie');
 const log = require('./logger');
 
+const baseUrl = 'https://www.dijnet.hu/ekonto';
 const cookieJar = new CookieJar();
 
-async function _request(path, outfile, test, body) {
-	log.trace('%s %s', body ? 'POST' : 'GET', path);
-	const baseUrl = 'https://www.dijnet.hu/ekonto';
+async function _request(dijnet_path, outfile, test, body) {
+	log.trace('%s %s', body ? 'POST' : 'GET', dijnet_path);
 	const headers = body ? {
 		'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
 		'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7',
@@ -18,15 +19,29 @@ async function _request(path, outfile, test, body) {
 	} : null;
 	const options = { baseUrl, body, cookieJar, headers };
 	try {
-		const response = await got(path, options);
+		const response = await got(dijnet_path, options);
 		if (outfile) {
-			log.trace('Saving response body (%dKB) to %s', Math.round(response.body.length / 102.4) / 10, outfile);
+			log.trace('Kapott válasz (%dKB) mentése ide: %s', Math.round(response.body.length / 102.4) / 10, outfile);
 			fs.writeFileSync(outfile, response.body);
 		}
 		if (test && response.body.indexOf(test) === -1) {
 			throw new Error(`Érvénytelen lap, nem tartalmazza ezt: ${test}`);
 		}
 		return response;
+	} catch (error) {
+		throw error;
+	}
+}
+
+async function download(dijnet_path, outdir) {
+	log.trace('GET (binary) %s', dijnet_path);
+	const options = { baseUrl, cookieJar, encoding: null };
+	try {
+		const response = await got(dijnet_path, options);
+		const filename = response.headers["content-disposition"].replace(/.*filename=/, '');
+		const outfile = path.join(outdir, filename);
+		log.trace('Fájl (%d KB) mentése ide: %s', Math.round(response.body.length / 102.4) / 10, outfile);
+		fs.writeFileSync(outfile, response.body, 'binary');
 	} catch (error) {
 		throw error;
 	}
@@ -128,6 +143,7 @@ module.exports = {
 	szamla_letolt,
 	parse_szamla_list,
 	parse_szamla_letolt,
+	download,
 	// util
 	sleep
 };
