@@ -1,3 +1,4 @@
+const fs = require('fs');
 const setTimeoutP = require('util').promisify(setTimeout);
 const cheerio = require('cheerio');
 const deburr = require('lodash.deburr');
@@ -7,7 +8,7 @@ const log = require('./logger');
 
 const cookieJar = new CookieJar();
 
-async function _request(path, test, body) {
+async function _request(path, outfile, test, body) {
 	log.trace('%s %s', body ? 'POST' : 'GET', path);
 	const baseUrl = 'https://www.dijnet.hu/ekonto';
 	const headers = body ? {
@@ -18,6 +19,10 @@ async function _request(path, test, body) {
 	const options = { baseUrl, body, cookieJar, headers };
 	try {
 		const response = await got(path, options);
+		if (outfile) {
+			log.trace('Saving response body (~%dK) to %s', response.body.length / 1024, outfile);
+			fs.writeFileSync(outfile, response.body);
+		}
 		if (test && response.body.indexOf(test) === -1) {
 			// TODO write out body to file for debugging
 			throw new Error(`Érvénytelen lap, nem tartalmazza ezt: ${test}`);
@@ -28,22 +33,27 @@ async function _request(path, test, body) {
 	}
 }
 
-function login(dijnet_user, dijnet_pass) {
-	log.info('Bejelentkezés');
+function login(dijnet_user, dijnet_pass, outfile) {
 	return _request(
-		'/login/login_check_password', 'href="/ekonto/control/szamla_search"',
+		'/login/login_check_password', outfile,
+		'href="/ekonto/control/szamla_search"',
 		`vfw_form=login_check_password&username=${dijnet_user}&password=${dijnet_pass}`);
 }
 
-function szamla_search() {
-	log.info('Számla kereső megnyitása');
-	return _request('/control/szamla_search', 'action="szamla_search_submit"');
+function szamla_search(outfile) {
+	return _request('/control/szamla_search', outfile, 'action="szamla_search_submit"');
 }
 
-function szamla_search_submit() {
-	log.info('Számla kereső űrlap elküldése');
-	return _request('/control/szamla_search_submit', '/control/szamla_select',
+function szamla_search_submit(outfile) {
+	return _request('/control/szamla_search_submit', outfile,
+		'/control/szamla_select',
 		'vfw_form=szamla_search_submit&vfw_coll=szamla_search_params&regszolgid=&szlaszolgid=&datumtol=&datumig=');
+}
+
+function szamla_select(rowid, outfile) {
+	return _request(
+		`/control/szamla_select?vfw_coll=szamla_list&vfw_coll_index=0&vfw_rowid=${rowid}&vfw_colid=ugyfelazon|S`,
+		outfile, 'href="szamla_letolt"');
 }
 
 function normalize(s) {
@@ -99,6 +109,7 @@ module.exports = {
 	login,
 	szamla_search,
 	szamla_search_submit,
+	szamla_select,
 	parse_szamla_list,
 	// util
 	sleep

@@ -34,6 +34,7 @@
     "dotenv": "^6.2.0",
     "got": "^9.3.2",
     "lodash.deburr": "^4.1.0",
+    "mkdirp": "^0.5.1",
     "signale": "^1.3.0",
     "tough-cookie": "^2.5.0"
   },
