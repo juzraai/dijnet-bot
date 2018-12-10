@@ -4,15 +4,22 @@ const mkdirp = require('util').promisify(require('mkdirp'));
 const dijnet = require('./lib');
 const log = require('./logger');
 
+process.env.TEMP_DIR = (process.env.TEMP_DIR || '').trim();
 function tmp(name) {
-	return path.join(process.env.TEMP_DIR, name);
+	return process.env.TEMP_DIR.length === 0 ? null : path.join(process.env.TEMP_DIR, name);
 }
 
 (async () => {
 	try {
+		log.success('Díjnet-bot indul');
+
 		log.info('Könyvtárak létrehozása');
+		log.trace('Kimeneti könyvtár létrehozása: %s', process.env.OUTPUT_DIR);
 		await mkdirp(process.env.OUTPUT_DIR);
-		await mkdirp(process.env.TEMP_DIR);
+		if (process.env.TEMP_DIR.length > 0) {
+			log.trace('Segédfájlok könyvtár létrehozása: %s', process.env.TEMP_DIR);
+			await mkdirp(process.env.TEMP_DIR);
+		}
 
 		log.info('Bejelentkezés');
 		await dijnet.login(process.env.DIJNET_USER, process.env.DIJNET_PASS, tmp('login.html'));
@@ -53,6 +60,7 @@ function tmp(name) {
 			await dijnet.sleep(3);
 			await dijnet.szamla_list(tmp(`szamla_list_${invoice.rowid}.html`));
 		}
+		log.success('Kész');
 	} catch (error) {
 		log.error(error.message);
 	}

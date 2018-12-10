@@ -33,4 +33,12 @@ Object.keys(options.types).forEach(t => {
 	};
 });
 
+const types = { trace: 4, info: 3, success: 2, error: 1 }; // ezeket használjuk csak
+Object.keys(types).forEach(t => {
+	const l = types[t];
+	if ((process.env.LOG_LEVEL || 4) < l) {
+		log[t] = () => {};
+	}
+});
+
 module.exports = log;
