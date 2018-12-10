@@ -38,7 +38,7 @@ async function download(dijnet_path, outdir) {
 	const options = { baseUrl, cookieJar, encoding: null };
 	try {
 		const response = await got(dijnet_path, options);
-		const filename = response.headers["content-disposition"].replace(/.*filename=/, '');
+		const filename = response.headers['content-disposition'].replace(/.*filename=/, '');
 		const outfile = path.join(outdir, filename);
 		log.trace('Fájl (%d KB) mentése ide: %s', Math.round(response.body.length / 102.4) / 10, outfile);
 		fs.writeFileSync(outfile, response.body, 'binary');
@@ -125,7 +125,7 @@ function parse_szamla_letolt(body) {
 	const $ = cheerio.load(body, { normalizeWhitespace: true });
 	const downloads = [];
 	$('a.xt_link__download').each((_, a) => {
-		const href = a.attribs['href'];
+		const { href } = a.attribs;
 		if (href.indexOf('://') === -1) {
 			downloads.push(`/control/${href}`);
 		}
