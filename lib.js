@@ -20,11 +20,10 @@ async function _request(path, outfile, test, body) {
 	try {
 		const response = await got(path, options);
 		if (outfile) {
-			log.trace('Saving response body (~%dK) to %s', response.body.length / 1024, outfile);
+			log.trace('Saving response body (%dKB) to %s', Math.round(response.body.length / 102.4) / 10, outfile);
 			fs.writeFileSync(outfile, response.body);
 		}
 		if (test && response.body.indexOf(test) === -1) {
-			// TODO write out body to file for debugging
 			throw new Error(`Érvénytelen lap, nem tartalmazza ezt: ${test}`);
 		}
 		return response;
@@ -54,6 +53,10 @@ function szamla_select(rowid, outfile) {
 	return _request(
 		`/control/szamla_select?vfw_coll=szamla_list&vfw_coll_index=0&vfw_rowid=${rowid}&vfw_colid=ugyfelazon|S`,
 		outfile, 'href="szamla_letolt"');
+}
+
+function szamla_letolt(outfile) {
+	return _request('/control/szamla_letolt', outfile, 'class="xt_link__download"');
 }
 
 function normalize(s) {
@@ -99,6 +102,18 @@ function parse_szamla_list(body) {
 	return invoices;
 }
 
+function parse_szamla_letolt(body) {
+	const $ = cheerio.load(body, { normalizeWhitespace: true });
+	const downloads = [];
+	$('a.xt_link__download').each((_, a) => {
+		const href = a.attribs['href'];
+		if (href.indexOf('://') === -1) {
+			downloads.push(`/control/${href}`);
+		}
+	});
+	return downloads;
+}
+
 async function sleep(s) {
 	log.trace('Várunk %d másorpercet', s);
 	await setTimeoutP(s * 1000);
@@ -110,7 +125,9 @@ module.exports = {
 	szamla_search,
 	szamla_search_submit,
 	szamla_select,
+	szamla_letolt,
 	parse_szamla_list,
+	parse_szamla_letolt,
 	// util
 	sleep
 };

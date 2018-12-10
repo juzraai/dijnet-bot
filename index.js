@@ -34,9 +34,10 @@ function tmp(name) {
 			await mkdirp(path.join(process.env.OUTPUT_DIR, `${invoice.provider} - ${invoice.customName}`, invoice.date));
 			await dijnet.sleep(3);
 			await dijnet.szamla_select(invoice.rowid, tmp(`szamla_select_${invoice.rowid}.html`));
-			//await dijnet.sleep(3);
-			//await dijnet.szamla_letolt();
-			// TODO parse, iterate files
+			await dijnet.sleep(3);
+			const szamla_letolt_response = (await dijnet.szamla_letolt(tmp(`szamla_letolt_${invoice.rowid}.html`))).body;
+			dijnet.parse_szamla_letolt(szamla_letolt_response);
+			// TODO iterate files
 			break;
 		}
 	} catch (error) {
