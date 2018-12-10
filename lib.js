@@ -12,11 +12,11 @@ const cookieJar = new CookieJar();
 
 async function _request(dijnet_path, outfile, test, body) {
 	log.trace('%s %s', body ? 'POST' : 'GET', dijnet_path);
-	const headers = body ? {
+	const formHeaders = body ? { 'content-type': 'application/x-www-form-urlencoded' } : {};
+	const headers = Object.assign({
 		'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-		'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7',
-		'content-type': 'application/x-www-form-urlencoded'
-	} : null;
+		'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7'
+	}, formHeaders);
 	const options = { baseUrl, body, cookieJar, headers };
 	try {
 		const response = await got(dijnet_path, options);
@@ -72,6 +72,10 @@ function szamla_select(rowid, outfile) {
 
 function szamla_letolt(outfile) {
 	return _request('/control/szamla_letolt', outfile, 'class="xt_link__download"');
+}
+
+function szamla_list(outfile) {
+	return _request('/control/szamla_list', outfile, '/control/szamla_select');
 }
 
 function normalize(s) {
@@ -141,6 +145,7 @@ module.exports = {
 	szamla_search_submit,
 	szamla_select,
 	szamla_letolt,
+	szamla_list,
 	parse_szamla_list,
 	parse_szamla_letolt,
 	download,

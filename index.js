@@ -45,8 +45,9 @@ function tmp(name) {
 				await dijnet.download(file, dir);
 			}
 			log.success('[%d/%d] Számla #%d fájljai (%d db) lementve', i + 1, invoices.length, invoice.rowid, files.length);
-			// TODO lista
-			break;
+			log.info('Visszatérés a számla listához');
+			await dijnet.sleep(3);
+			await dijnet.szamla_list(tmp(`szamla_list_${invoice.rowid}.html`));
 		}
 	} catch (error) {
 		log.error(error.message);
