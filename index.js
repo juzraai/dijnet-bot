@@ -4,6 +4,7 @@ const mkdirp = require('util').promisify(require('mkdirp'));
 const dijnet = require('./lib');
 const log = require('./logger');
 
+process.env.SLEEP = process.env.SLEEP || 3;
 process.env.TEMP_DIR = (process.env.TEMP_DIR || '').trim();
 function tmp(name) {
 	return process.env.TEMP_DIR.length === 0 ? null : path.join(process.env.TEMP_DIR, name);
@@ -25,11 +26,11 @@ function tmp(name) {
 		await dijnet.login(process.env.DIJNET_USER, process.env.DIJNET_PASS, tmp('login.html'));
 
 		log.info('Számla kereső megnyitása');
-		await dijnet.sleep(3);
+		await dijnet.sleep(process.env.SLEEP);
 		await dijnet.szamla_search(tmp('szamla_search.html'));
 
 		log.info('Számla kereső űrlap elküldése');
-		await dijnet.sleep(3);
+		await dijnet.sleep(process.env.SLEEP);
 		const szamla_list_response = (await dijnet.szamla_search_submit(tmp('szamla_search_submit.html'))).body;
 
 		const invoices = dijnet.parse_szamla_list(szamla_list_response);
@@ -41,17 +42,17 @@ function tmp(name) {
 
 			log.info('[%d/%d] Számla #%d kiválasztása', i + 1, invoices.length, invoice.rowid);
 			await mkdirp(dir);
-			await dijnet.sleep(3);
+			await dijnet.sleep(process.env.SLEEP);
 			await dijnet.szamla_select(invoice.rowid, tmp(`szamla_select_${invoice.rowid}.html`));
 
-			await dijnet.sleep(3);
+			await dijnet.sleep(process.env.SLEEP);
 			const szamla_letolt_response = (await dijnet.szamla_letolt(tmp(`szamla_letolt_${invoice.rowid}.html`))).body;
 
 			const files = dijnet.parse_szamla_letolt(szamla_letolt_response);
 			for (let f = 0; f < files.length; f++) {
 				const file = files[f];
 				log.info('%s letöltése', file);
-				await dijnet.sleep(3);
+				await dijnet.sleep(process.env.SLEEP);
 				await dijnet.download(file, dir);
 			}
 
@@ -63,5 +64,7 @@ function tmp(name) {
 		log.success('Kész');
 	} catch (error) {
 		log.error(error.message);
+		log.trace(error.stack);
+		process.exit(1);
 	}
 })();
