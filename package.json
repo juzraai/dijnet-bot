@@ -2,7 +2,7 @@
   "name": "dijnet-bot",
   "version": "1.0.0",
   "description": "Automatikusan lementi az összes számládat :)",
-  "private": true,
+  "bin": "index.js",
   "main": "index.js",
   "repository": {
     "type": "git",
