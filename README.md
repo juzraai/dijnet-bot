@@ -78,7 +78,7 @@ A program minden alkalommal, **mielőtt kérést küld a Díjnet felé, vár né
 
 Csak egy Díjnet fiókom van, és abban is csak 3 szolgáltató (UPC, FVM és FCSM). A szkriptet **2018. decemberében** végigfuttattam, és az akkor jelen levő ~3.5 tucat számlámat hiánytalanul lementette.
 
-![](/juzraai/dijnet-bot/blob/master/dijnet-bot-run.png)
+![](https://raw.githubusercontent.com/juzraai/dijnet-bot/master/dijnet-bot-run.png)
 
 
 
