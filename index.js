@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 require('dotenv').config();
 const path = require('path');
 const mkdirp = require('util').promisify(require('mkdirp'));

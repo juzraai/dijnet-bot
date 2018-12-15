@@ -30,21 +30,13 @@ A feladatra már mások is készítettek szkripteket, pl. a [wolandmaster/dijnet
 
 ## Hogyan használjam?
 
-1. [Töltsd le a Díjnet Botot](https://github.com/juzraai/dijnet-bot/releases/latest) és csomagold ki egy (üres) mappába
-1. Készíts egy másolatot az `.env.example` fájlról `.env` néven
+1. [Töltsd le a Díjnet Botot](https://github.com/juzraai/dijnet-bot/releases/latest) és csomagold ki
+1. Nyiss egy terminált/parancssort ebben a mappában, majd futtasd le az `npm i -g` parancsot, mely letölti a szükséges fájlokat (~ 4 MB) és telepíti a programot a globális NPM csomagok közé
+1. Kreálj egy üres mappát valahol, ahol a konfigfájlt és a számlákat fogjuk tárolni
+1. Másold bele a letöltött pakkból az `.env.example` fájlt és nevezd át `.env`-re
 1. Szerkeszd az `.env` fájlt, ebben lesznek a program beállításai - további instrukciók a fájlban
-1. Nyiss egy parancssort/terminált a mappában
-1. Futtasd le az `npm i` parancsot, mely letölti a szükséges fájlokat (~ 4 MB) a `node_modules` mappába
 
-A fentieket csak egyszer kell megcsinálni, a továbbiakban a programot a `node .` vagy `node index.js` paranccsal tudod elindítani (a program könyvtárában állva).
-
-```
-/ahova/letoltotted/dijnet-bot$ node .
-```
-
-```
-C:\ahova\letoltotted\dijnet-bot> node .
-```
+A fentieket csak egyszer kell megcsinálni, a továbbiakban a programot a `dijnet-bot` paranccsal tudod elindítani. Fontos, hogy ezt abból a könyvtárból tedd meg, ahol a `.env` fájl van.
 
 
 

@@ -1,5 +1,8 @@
 # TODO v1.1.0
 
+* global install vs .env - kényelmetlen! CLI kéne a beállításokhoz
+* JSdoc
+
 ## Feature: cache
 
 * Ötlet: a már bejárt számlákat ne nyissuk meg újra
