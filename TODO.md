@@ -1,7 +1,24 @@
 # TODO v1.1.0
 
-* global install vs .env - kényelmetlen! CLI kéne a beállításokhoz
 * JSdoc
+
+## Feature: config via CLI
+
+* A global install kényelmét veszti a .env-es megoldással - parancssori argumentumok segíthetnek.
+* https://www.npmjs.com/package/commander
+* De megtarthatunk konfigfájlt is, csak legyen konfigolható, hogy hol van.
+* Szóval a sorrend:
+	* default értékek
+	* default helyen levő konfigfájlban levő értékek `~/.dijnet-bot` (.env syntax)
+	* `-c <fájl>` paraméterben megadott konfigfájl értékei
+	* paraméterben megadott értékek
+* Paraméterek:
+	* `-a <auth file>` - hogy ne kerüljön command historyba érzékeny adat; default: `~/.dijnet-bot`
+	* `-L <log level>` - default: 2
+	* `-o <output dir>` - default: `./szamlak`
+	* `-s <sleep sec>` - default: 3
+	* `-t <temp dir>`
+
 
 ## Feature: cache
 
