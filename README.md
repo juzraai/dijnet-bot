@@ -31,7 +31,7 @@ A feladatra már mások is készítettek szkripteket, pl. a [wolandmaster/dijnet
 ## Hogyan használjam?
 
 1. [Töltsd le a Díjnet Botot](https://github.com/juzraai/dijnet-bot/releases/latest) és csomagold ki
-1. Nyiss egy terminált/parancssort ebben a mappában, majd futtasd le az `npm i -g` parancsot, mely letölti a szükséges fájlokat (~ 4 MB) és telepíti a programot a globális NPM csomagok közé
+1. Nyiss egy terminált/parancssort ebben a mappában, majd futtasd le az `npm i -g` parancsot, mely letölti a szükséges fájlokat (~ 5 MB) és telepíti a programot a globális NPM csomagok közé
 1. Kreálj egy üres mappát valahol, ahol a konfigfájlt és a számlákat fogjuk tárolni
 1. Másold bele a letöltött pakkból az `.env.example` fájlt és nevezd át `.env`-re
 1. Szerkeszd az `.env` fájlt, ebben lesznek a program beállításai - további instrukciók a fájlban

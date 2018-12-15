@@ -36,6 +36,7 @@
     "lodash.deburr": "^4.1.0",
     "mkdirp": "^0.5.1",
     "signale": "^1.3.0",
+    "single-instance": "0.0.1",
     "tough-cookie": "^2.5.0"
   },
   "xo": {
