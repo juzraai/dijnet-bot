@@ -5,6 +5,7 @@
 		"capitalized-comments": 0,
 		"no-await-in-loop": 0,
 		"object-curly-spacing": 0,
-		"quote-props": 0
+		"quote-props": 0,
+		"unicorn/no-process-exit": 0
 	}
 }

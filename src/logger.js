@@ -2,19 +2,19 @@ const chalk = require('chalk');
 const { Signale } = require('signale');
 
 const config = {
-	"coloredInterpolation": false,
-    "displayScope": false,
-    "displayBadge": true,
-    "displayDate": false,
-    "displayFilename": false,
-    "displayLabel": false,
-    "displayTimestamp": true,
-    "underlineLabel": true,
-    "underlineMessage": false,
-    "underlinePrefix": false,
-    "underlineSuffix": false,
-    "uppercaseLabel": false
-}
+	coloredInterpolation: false,
+	displayScope: false,
+	displayBadge: true,
+	displayDate: false,
+	displayFilename: false,
+	displayLabel: false,
+	displayTimestamp: true,
+	underlineLabel: true,
+	underlineMessage: false,
+	underlinePrefix: false,
+	underlineSuffix: false,
+	uppercaseLabel: false
+};
 
 const options = {
 	types: {
