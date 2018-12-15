@@ -1,6 +1,6 @@
 {
   "name": "dijnet-bot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatikusan lementi az összes számládat :)",
   "bin": "index.js",
   "main": "index.js",
@@ -40,19 +40,5 @@
   },
   "xo": {
     "extend": ".eslintrc"
-  },
-  "signale": {
-    "coloredInterpolation": false,
-    "displayScope": false,
-    "displayBadge": true,
-    "displayDate": false,
-    "displayFilename": false,
-    "displayLabel": false,
-    "displayTimestamp": true,
-    "underlineLabel": true,
-    "underlineMessage": false,
-    "underlinePrefix": false,
-    "underlineSuffix": false,
-    "uppercaseLabel": false
   }
 }

@@ -1,6 +1,21 @@
 const chalk = require('chalk');
 const { Signale } = require('signale');
 
+const config = {
+	"coloredInterpolation": false,
+    "displayScope": false,
+    "displayBadge": true,
+    "displayDate": false,
+    "displayFilename": false,
+    "displayLabel": false,
+    "displayTimestamp": true,
+    "underlineLabel": true,
+    "underlineMessage": false,
+    "underlinePrefix": false,
+    "underlineSuffix": false,
+    "uppercaseLabel": false
+}
+
 const options = {
 	types: {
 		trace: {
@@ -24,6 +39,7 @@ const options = {
 };
 
 const log = new Signale(options);
+log.config(config);
 Object.keys(options.types).forEach(t => {
 	const original = log[t];
 	log[t] = (...s) => {
