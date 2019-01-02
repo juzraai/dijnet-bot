@@ -14,15 +14,17 @@ Use `npm version {patch|minor|major}`!
 ## Major: rebuild & progress
 
 * Újraépíteni az egész kódot:
-	* Kód + JSdoc nyelve angol
-	* lib.js: Díjnet API, osztály, metódusokkal
-		* később: biztosítani a megfelelő állapotot
-			* pl. "fetchInvoiceList" ellenőrzi, h be vagyunk-e jelentkezve és auto. bejelentkezik, etc.
-			* meg a "fetchInvoiceFiles(id)" 2 requestet küld, számla oldala, aztán Letöltés lap
-	* bot.js: Díjnet Bot, osztály, metódusokkal, API-t hívja
-	* conf.js: betölti a konfigot
-	* index.js: instance check, aztán new DijnetBot(conf).start()
-* Log: kizárólag fájlba, kikapcsolható
+* Kód + JSdoc nyelve angol
+* lib.js: Díjnet API, osztály, metódusokkal
+	* ez az, ami logol, és kizárólag fájlba (kikapcsolható)
+	* a loggert megkapja paraméterben (log és error függvény kell neki - így a console is átadható egy mozdulattal)
+	* később: biztosítani a megfelelő állapotot
+		* pl. "fetchInvoiceList" ellenőrzi, h be vagyunk-e jelentkezve és auto. bejelentkezik, etc.
+		* meg a "fetchInvoiceFiles(id)" 2 requestet küld, számla oldala, aztán Letöltés lap
+* bot.js: Díjnet Bot, osztály, metódusokkal, API-t hívja
+	* ez pedig nem logol, de progresst mutat a képernyőn (ld. lejjebb)
+* conf.js: betölti a konfigot
+* index.js: instance check, aztán new DijnetBot(conf).start()
 * Progressz kijelzés: új feature, kikapcsolható
 	* a képernyőre, ha van (process.stdout.isTTY)
 	* többsoros, visszatörléssel (npm i ansi)
@@ -35,6 +37,7 @@ Use `npm version {patch|minor|major}`!
 		by  juzraai | Számla:         [x/y] éééé.hh.nn. szolgáltató - szolgáltatás
 		vx.x.x      | Hátralevő idő:  x perc
 		```
+	* és lehet optimalizálni, hogy nem az egész sort írja újra, hanem csak a ":" utáni részt
 * +CLI (ld. lent)
 * +cache (ld. lent)
 
