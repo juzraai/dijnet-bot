@@ -1,12 +1,63 @@
-# TODO v1.1.0
+# TODO
 
-* JSdoc
+Use `npm version {patch|minor|major}`!
 
-## Feature: config via CLI
+
+
+## Patch: JSdoc
+
+* Dokumentálni kéne a metódusokat, paramétereik és visszatérési értékeik típusát - segíti a fejlesztést
+* Magyarul?!
+
+
+
+## Major: rebuild & progress
+
+* Újraépíteni az egész kódot:
+	* Kód + JSdoc nyelve angol
+	* lib.js: Díjnet API, osztály, metódusokkal
+		* később: biztosítani a megfelelő állapotot
+			* pl. "fetchInvoiceList" ellenőrzi, h be vagyunk-e jelentkezve és auto. bejelentkezik, etc.
+			* meg a "fetchInvoiceFiles(id)" 2 requestet küld, számla oldala, aztán Letöltés lap
+	* bot.js: Díjnet Bot, osztály, metódusokkal, API-t hívja
+	* conf.js: betölti a konfigot
+	* index.js: instance check, aztán new DijnetBot(conf).start()
+* Log: kizárólag fájlba, kikapcsolható
+* Progressz kijelzés: új feature, kikapcsolható
+	* a képernyőre, ha van (process.stdout.isTTY)
+	* többsoros, visszatörléssel (npm i ansi)
+		* kék: Művelet
+		* zöld: Számla (ha nem ilyen jellegű a művelet, akkor "-")
+		* fehér: Hátralevő idő
+	* akár mehet bele valami logó is bal oldalra
+		```
+		DíjnetBot   | Művelet:        valami
+		by  juzraai | Számla:         [x/y] éééé.hh.nn. szolgáltató - szolgáltatás
+		vx.x.x      | Hátralevő idő:  x perc
+		```
+* +CLI (ld. lent)
+* +cache (ld. lent)
+
+
+
+
+## Major/minor: Config via CLI
 
 * A global install kényelmét veszti a .env-es megoldással - parancssori argumentumok segíthetnek.
 * https://www.npmjs.com/package/commander
-* De megtarthatunk konfigfájlt is, csak legyen konfigolható, hogy hol van.
+
+### Major:
+
+* .env-et és konfigfájlt felejtjük
+* vannak default értékek
+* parancssori argumentumokkal felülírhatóak
+* auth infók:
+	* A) parancssori arg (`-u` és `-p`)
+	* B) vagy ha az nincs, akkor stdin, 2 sor - és ugye itt akkor igény szerint fájlt is megadhatnak (`<`)
+
+### Minor:
+
+* Megtarthatunk konfigfájlt is, csak legyen konfigolható, hogy hol van.
 * Szóval a sorrend:
 	* default értékek
 	* default helyen levő konfigfájlban levő értékek `~/.dijnet-bot` (.env syntax)
@@ -20,7 +71,8 @@
 	* `-t <temp dir>`
 
 
-## Feature: cache
+
+## Minor: cache
 
 * Ötlet: a már bejárt számlákat ne nyissuk meg újra
 * Meg kell jelölni a számla mappájában, ha "complete" a mentés - vagy akár fordítva, pl. ".incomplete" fájllal, amit mkdirp után hozunk létre és az utolsó fájl sikeres letöltése után törlünk
@@ -29,7 +81,8 @@
 * Ha igen, akkor mondjuk az utolsó 3 hónap számláinál nem vesszük figyelembe a complete/incomplete jelzést és bejárjuk a számlákat (újra)
 
 
-## Feature: report
+
+## Minor: report
 
 CLI:
 * `-r` jelenlétében szamla_search_submit után lefut a riport generálás
