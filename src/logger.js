@@ -20,20 +20,25 @@ const options = {
 	types: {
 		trace: {
 			badge: '…',
-			color: 'gray'
+			color: 'gray',
+			label: ''
 		},
 		info: {
 			badge: '·',
-			color: 'blue'
+			color: 'blue',
+			label: ''
 		},
 		warn: {
-			color: 'yellow'
+			color: 'yellow',
+			label: ''
 		},
 		error: {
-			color: 'red'
+			color: 'red',
+			label: ''
 		},
 		success: {
-			color: 'green'
+			color: 'green',
+			label: ''
 		}
 	}
 };
