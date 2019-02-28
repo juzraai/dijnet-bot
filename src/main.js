@@ -4,6 +4,7 @@ const mkdirp = require('util').promisify(require('mkdirp'));
 const dijnet = require('./lib');
 const log = require('./logger');
 
+process.env.OUTPUT_DIR = process.env.OUTPUT_DIR || './szamlak';
 process.env.SLEEP = process.env.SLEEP || 3;
 process.env.TEMP_DIR = (process.env.TEMP_DIR || '').trim();
 function tmp(name) {
