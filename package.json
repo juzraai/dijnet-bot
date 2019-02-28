@@ -1,6 +1,6 @@
 {
   "name": "dijnet-bot",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Automatikusan lementi az összes számládat :)",
   "bin": "index.js",
   "main": "index.js",
