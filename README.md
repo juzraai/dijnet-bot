@@ -46,10 +46,12 @@ A fentieket csak egyszer kell megcsinálni, a továbbiakban a programot a `dijne
 1. Rámegy a "Számlák keresése" oldalra
 1. Elküldi az űrlapot üresen, hogy megkapja az összes számlát
 1. Kiparszolja a számlák adatait, majd végigmegy a számlákon:
-	1. Megnyitja a számla adatlapját
-	1. Rámegy a "Letöltés" fülre
-	1. Letölti az összes fájlt, ami be van linkelve
-	1. Visszamegy a számla listához
+	1. Ha ennek a számlának a fájljait még nem töltöttük le, akkor:
+		1. Megnyitja a számla adatlapját
+		1. Rámegy a "Letöltés" fülre
+		1. Letölti az összes fájlt, ami be van linkelve
+		1. Megjelöli ezt a számlát, hogy a program későbbi futtatásánál ne töltse le újra
+		1. Visszamegy a számla listához
 
 Az eredmény, vagyis **a letöltött fájlok a kimeneti mappába kerülnek** (alapértelmezésként `./szamlak`), szolgáltató, szolgáltatás és dátum bontásban. A könyvtárszerkezet az alábbiak szerint alakul:
 
@@ -63,6 +65,8 @@ szamlak/
 A szolgáltató neve és a szolgáltatási azonosító normalizálva lesz, a felismerhető ékezetes karakterek át lesznek alakítva ékezet nélkülivé, minden egyéb nem alfanumerikus karakter pedig el lesz távolítva. A számlák egyes fájljai úgy lesznek elnevezve, ahogy a Díjnet szerver generálja.
 
 A program minden alkalommal, **mielőtt kérést küld a Díjnet felé, vár néhány másodpercet.** Az érték állítható, javallott legalább 3-5 másodpercet megadni. Erre azért van szükség, hogy a Díjnet szerverét minél kevésbé terheljük.
+
+**ÚJ FUNKCIÓ!** A program a kimeneti mappán belül a `kesz.txt` fájlba beírja azon számlák azonosítóját (számlaszám/bizonylatszám), amelyeknek minden fájlját sikerült lementeni. Így a következő futtatásakor ezeket a számlákat át tudja ugorni, vagyis **csak az újabb (vagy korábban nem lementett) számlákkal fog foglalkozni.** (Ha a program korábbi verziójával már töltöttél le számlákat, azokat egyszer újra le fogja tölteni. Vagy akár azt is megteheted, hogy a `kesz.txt`-be soronként beírod a számla azonosítókat.)
 
 
 
@@ -82,4 +86,4 @@ A programot az *Unlicense* feltételei alatt osztom meg, vagyis szabadon haszná
 
 ## Közreműködés
 
-Ha kérdésed, ötleted van, vagy hibát találtál, nyiss egy ticketet az [*Issues* fülön](https://github.com/juzraai/dijnet-bot/issues). Ha meg netán meg is javítottál valamit, küldj egy pull request-et.
+Ha kérdésed, ötleted van, vagy hibát találtál, kérlek nyiss egy új ticketet az [*Issues* fülön](https://github.com/juzraai/dijnet-bot/issues). Ha netán meg is javítottál valamit, lécci küldj egy pull request-et.
