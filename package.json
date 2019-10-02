@@ -4,6 +4,9 @@
   "description": "Automatikusan lementi az összes számládat :)",
   "bin": "index.js",
   "main": "index.js",
+  "scripts": {
+    "release": "standard-version"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/juzraai/dijnet-bot.git"
@@ -38,6 +41,9 @@
     "signale": "^1.4.0",
     "single-instance": "0.0.1",
     "tough-cookie": "^3.0.0"
+  },
+  "devDependencies": {
+    "standard-version": "^7.0.0"
   },
   "xo": {
     "extend": ".eslintrc"
