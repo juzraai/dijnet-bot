@@ -136,7 +136,7 @@ function parse_szamla_letolt(body) {
 }
 
 async function sleep(s) {
-	log.trace('Várunk %d másorpercet', s);
+	log.trace('Várunk %d másodpercet', s);
 	await setTimeoutP(s * 1000);
 }
 
