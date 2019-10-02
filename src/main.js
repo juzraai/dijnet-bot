@@ -1,4 +1,5 @@
 require('dotenv').config();
+const fs = require('fs');
 const path = require('path');
 const mkdirp = require('util').promisify(require('mkdirp'));
 const dijnet = require('./lib');
@@ -9,6 +10,24 @@ process.env.SLEEP = process.env.SLEEP || 3;
 process.env.TEMP_DIR = (process.env.TEMP_DIR || '').trim();
 function tmp(name) {
 	return process.env.TEMP_DIR.length === 0 ? null : path.join(process.env.TEMP_DIR, name);
+}
+
+const alreadyCrawledIdsFile = path.join(process.env.OUTPUT_DIR, 'kesz.txt');
+let alreadyCrawledIds = null;
+function isAlreadyCrawled(id) {
+	if (null == alreadyCrawledIds) {
+
+		if (fs.existsSync(alreadyCrawledIdsFile)) {
+			alreadyCrawledIds = fs.readFileSync(alreadyCrawledIdsFile, 'utf8').split('\n');
+		} else {
+			alreadyCrawledIds = [];
+		}
+	}
+	return alreadyCrawledIds.includes(id);
+}
+
+function markAlreadyCrawled(id) {
+	fs.appendFileSync(alreadyCrawledIdsFile, id + '\n');
 }
 
 const start = async () => {
@@ -39,6 +58,12 @@ const start = async () => {
 
 		for (let i = 0; i < invoices.length; i++) {
 			const invoice = invoices[i];
+
+			if (isAlreadyCrawled(invoice.billId)) {
+				log.success('[%d/%d] Számla #%d már letöltve, most kihagyjuk', i + 1, invoices.length, invoice.rowid);
+				continue;
+			}
+
 			const dir = path.join(process.env.OUTPUT_DIR, `${invoice.provider} - ${invoice.customName}`, invoice.date);
 
 			log.info('[%d/%d] Számla #%d kiválasztása', i + 1, invoices.length, invoice.rowid);
@@ -57,6 +82,7 @@ const start = async () => {
 				await dijnet.download(file, dir);
 			}
 
+			markAlreadyCrawled(invoice.billId);
 			log.success('[%d/%d] Számla #%d fájljai (%d db) lementve', i + 1, invoices.length, invoice.rowid, files.length);
 			log.info('Visszatérés a számla listához');
 			await dijnet.sleep(3);

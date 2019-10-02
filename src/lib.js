@@ -108,13 +108,15 @@ function parse_szamla_list(body) {
 	const providerIndex = indexOfOrThrowError('Szolgaltato');
 	const customNameIndex = indexOfOrThrowError('Szamlakibocsatoi azonosito');
 	const dateIndex = indexOfOrThrowError('Kiallitas datuma');
+	const billIdIndex = indexOfOrThrowError('Szamlaszam Bizonylatszam');
 	const invoices = [];
 	$('.szamla_table tbody tr').each((i, tr) => {
 		const invoice = {
 			rowid: $(tr).html().toString().match(/rowid=(\d+)/)[1],
 			provider: normalize($(tr.childNodes[providerIndex]).text()),
 			customName: normalize($(tr.childNodes[customNameIndex]).text()),
-			date: $(tr.childNodes[dateIndex]).text()
+			date: $(tr.childNodes[dateIndex]).text(),
+			billId: $(tr.childNodes[billIdIndex]).text()
 		};
 		invoices.push(invoice);
 	});
