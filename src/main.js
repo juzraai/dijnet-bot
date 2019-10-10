@@ -62,8 +62,9 @@ const start = async () => {
 		for (let i = 0; i < invoices.length; i++) {
 			const invoice = invoices[i];
 			const dir = path.join(process.env.OUTPUT_DIR, `${invoice.provider} - ${invoice.customName}`, invoice.date);
+			const logPrefix = `Számla ${i + 1}/${invoices.length} (${invoice.date}, ${invoice.provider}):`;
 
-			log.info('[%d/%d] Számla #%d kiválasztása', i + 1, invoices.length, invoice.rowid);
+			log.info(`${logPrefix} megnyitás`);
 			await mkdirp(dir);
 			await dijnet.sleep(process.env.SLEEP);
 			await dijnet.szamla_select(invoice.rowid, tmp(`szamla_select_${invoice.rowid}.html`));
@@ -74,13 +75,13 @@ const start = async () => {
 			const files = dijnet.parse_szamla_letolt(szamla_letolt_response);
 			for (let f = 0; f < files.length; f++) {
 				const file = files[f];
-				log.info('%s letöltése', file);
+				log.info(`${logPrefix} ${file} letöltése`);
 				await dijnet.sleep(process.env.SLEEP);
 				await dijnet.download(file, dir);
 			}
 
 			markAlreadyCrawled(invoice.billId);
-			log.success('[%d/%d] Számla #%d fájljai (%d db) lementve', i + 1, invoices.length, invoice.rowid, files.length);
+			log.success(`${logPrefix} ${files.length} fájl lementve`);
 			log.info('Visszatérés a számla listához');
 			await dijnet.sleep(3);
 			await dijnet.szamla_list(tmp(`szamla_list_${invoice.rowid}.html`));
