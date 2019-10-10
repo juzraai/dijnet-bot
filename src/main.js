@@ -53,17 +53,14 @@ const start = async () => {
 		await dijnet.sleep(process.env.SLEEP);
 		const szamla_list_response = (await dijnet.szamla_search_submit(tmp('szamla_search_submit.html'))).body;
 
-		const invoices = dijnet.parse_szamla_list(szamla_list_response);
-		log.success('%d db számlánk van', invoices.length);
+		let invoices = dijnet.parse_szamla_list(szamla_list_response);
+		log.success('Összesen %d db számla van a Díjnet fiókban', invoices.length);
+
+		invoices = invoices.filter(invoice => !isAlreadyCrawled(invoice.billId));
+		log.success('Ebből %d db számla új (még nincs letöltve)', invoices.length);
 
 		for (let i = 0; i < invoices.length; i++) {
 			const invoice = invoices[i];
-
-			if (isAlreadyCrawled(invoice.billId)) {
-				log.success('[%d/%d] Számla #%d már letöltve, most kihagyjuk', i + 1, invoices.length, invoice.rowid);
-				continue;
-			}
-
 			const dir = path.join(process.env.OUTPUT_DIR, `${invoice.provider} - ${invoice.customName}`, invoice.date);
 
 			log.info('[%d/%d] Számla #%d kiválasztása', i + 1, invoices.length, invoice.rowid);
