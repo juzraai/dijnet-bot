@@ -1,13 +1,10 @@
-require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('util').promisify(require('mkdirp'));
+require('./conf');
 const dijnet = require('./lib');
 const log = require('./logger');
 
-process.env.OUTPUT_DIR = process.env.OUTPUT_DIR || './szamlak';
-process.env.SLEEP = process.env.SLEEP || 3;
-process.env.TEMP_DIR = (process.env.TEMP_DIR || '').trim();
 function tmp(name) {
 	return process.env.TEMP_DIR.length === 0 ? null : path.join(process.env.TEMP_DIR, name);
 }
@@ -16,7 +13,6 @@ const alreadyCrawledIdsFile = path.join(process.env.OUTPUT_DIR, 'kesz.txt');
 let alreadyCrawledIds = null;
 function isAlreadyCrawled(id) {
 	if (null == alreadyCrawledIds) {
-
 		if (fs.existsSync(alreadyCrawledIdsFile)) {
 			alreadyCrawledIds = fs.readFileSync(alreadyCrawledIdsFile, 'utf8').split('\n');
 		} else {
