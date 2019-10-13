@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('util').promisify(require('mkdirp'));
-require('./conf');
+require('./conf'); // eslint-disable-line import/no-unassigned-import
+const { handleError } = require('./err');
 const dijnet = require('./lib');
 const log = require('./logger');
 
@@ -12,7 +13,7 @@ function tmp(name) {
 const alreadyCrawledIdsFile = path.join(process.env.OUTPUT_DIR, 'kesz.txt');
 let alreadyCrawledIds = null;
 function isAlreadyCrawled(id) {
-	if (null == alreadyCrawledIds) {
+	if (alreadyCrawledIds === null) {
 		if (fs.existsSync(alreadyCrawledIdsFile)) {
 			alreadyCrawledIds = fs.readFileSync(alreadyCrawledIdsFile, 'utf8').split('\n');
 		} else {
@@ -83,10 +84,12 @@ const start = async () => {
 			await dijnet.szamla_list(tmp(`szamla_list_${invoice.rowid}.html`));
 		}
 		log.success('Kész');
+
+		process.exit(0); // Windows 10-en Git Bash-ben különben nem áll le a program valamiért
 	} catch (error) {
-		log.error(error.message);
 		log.trace(error.stack);
-		process.exit(1);
+		log.error(error.message);
+		handleError(error);
 	}
 };
 

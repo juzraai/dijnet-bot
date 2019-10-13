@@ -2,3 +2,4 @@ node_modules/
 szamlak/
 temp/
 .env
+error.log
