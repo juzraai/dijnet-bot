@@ -84,7 +84,7 @@ Csak egy Díjnet fiókom van, és abban is csak 3 szolgáltató (UPC, FVM és FC
 
 ## Felhasználási feltételek
 
-A programot az *Unlicense* feltételei alatt osztom meg, vagyis szabadon használhatod - a részletekért kérlek, olvasd át a `LICENSE` fájlt.
+[MIT](LICENSE)
 
 
 
