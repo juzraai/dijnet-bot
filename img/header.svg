@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
-     inkscape:cx="154.75004"
-     inkscape:cy="8.7923277"
+     inkscape:cx="172.26262"
+     inkscape:cy="38.291929"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -100,14 +100,25 @@
        y="286.83832" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:4.23333311px;line-height:125%;font-family:'Barlow Condensed';-inkscape-font-specification:'Barlow Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5c6370;fill-opacity:0.50196081;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
-       x="58.009895"
-       y="276.89166"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:4.23333311px;line-height:125%;font-family:'Barlow Condensed';-inkscape-font-specification:'Barlow Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5c6370;fill-opacity:0.50196078;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="58.298538"
+       y="277.08197"
        id="text845"><tspan
          sodipodi:role="line"
          id="tspan843"
-         x="58.009895"
-         y="276.89166"
-         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:4.23333311px;font-family:'Barlow Condensed';-inkscape-font-specification:'Barlow Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#5c6370;fill-opacity:0.50196081;stroke-width:0.26458332px;">by     juzraai</tspan></text>
+         x="58.298538"
+         y="277.08197"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:4.23333311px;font-family:'Barlow Condensed';-inkscape-font-specification:'Barlow Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#5c6370;fill-opacity:0.50196078;stroke-width:0.26458332px">by</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:4.23333311px;line-height:125%;font-family:'Barlow Condensed';-inkscape-font-specification:'Barlow Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5c6370;fill-opacity:0.50196078;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="65.99485"
+       y="277.08197"
+       id="text845-1"><tspan
+         sodipodi:role="line"
+         id="tspan843-3"
+         x="65.99485"
+         y="277.08197"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:condensed;font-size:4.23333311px;font-family:'Barlow Condensed';-inkscape-font-specification:'Barlow Condensed, Semi-Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#5c6370;fill-opacity:0.50196078;stroke-width:0.26458332px">juzraai</tspan></text>
   </g>
 </svg>
