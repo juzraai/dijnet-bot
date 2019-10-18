@@ -4,12 +4,12 @@ const mkdirp = require('util').promisify(require('mkdirp'));
 const packageJson = require('../package.json');
 const configurate = require('./conf');
 const { handleError } = require('./err');
-const dijnet = require('./lib');
-const log = require('./logger');
 
 console.log(`Díjnet Bot v${packageJson.version}\n`);
 
 configurate();
+const log = require('./logger');
+const dijnet = require('./lib');
 
 function tmp(name) {
 	return process.env.TEMP_DIR.length === 0 ? null : path.join(process.env.TEMP_DIR, name);
@@ -36,7 +36,7 @@ const start = async () => {
 	try {
 		log.success('Díjnet-bot indul');
 
-		log.info('Könyvtárak létrehozása');
+		log.trace('Könyvtárak létrehozása');
 		log.trace('Kimeneti könyvtár létrehozása: %s', process.env.OUTPUT_DIR);
 		await mkdirp(process.env.OUTPUT_DIR);
 		if (process.env.TEMP_DIR.length > 0) {
@@ -44,29 +44,30 @@ const start = async () => {
 			await mkdirp(process.env.TEMP_DIR);
 		}
 
-		log.info('Bejelentkezés');
+		log.info('Bejelentkezés...');
 		await dijnet.login(process.env.DIJNET_USER, process.env.DIJNET_PASS, tmp('login.html'));
+		log.success(`Bejelentkezve: ${process.env.DIJNET_USER}`);
 
-		log.info('Számla kereső megnyitása');
+		log.info('Számlák keresése...');
 		await dijnet.sleep(process.env.SLEEP);
 		await dijnet.szamla_search(tmp('szamla_search.html'));
-
-		log.info('Számla kereső űrlap elküldése');
 		await dijnet.sleep(process.env.SLEEP);
 		const szamla_list_response = (await dijnet.szamla_search_submit(tmp('szamla_search_submit.html'))).body;
 
 		let invoices = dijnet.parse_szamla_list(szamla_list_response);
-		log.success('Összesen %d db számla van a Díjnet fiókban', invoices.length);
-
+		const allBillsCount = invoices.length;
 		invoices = invoices.filter(invoice => !isAlreadyCrawled(invoice.billId));
-		log.success('Ebből %d db számla új (még nincs letöltve)', invoices.length);
+		log.success(`${allBillsCount} db számla van a rendszerben, ebből ${allBillsCount - invoices.length} db lementve korábban`);
 
 		for (let i = 0; i < invoices.length; i++) {
 			const invoice = invoices[i];
 			const dir = path.join(process.env.OUTPUT_DIR, `${invoice.provider} - ${invoice.customName}`, invoice.date);
+
+			log.info(`Számla lementése: ${invoice.date}, ${invoice.provider}`);
+
 			const logPrefix = `Számla ${i + 1}/${invoices.length} (${invoice.date}, ${invoice.provider}):`;
 
-			log.info(`${logPrefix} megnyitás`);
+			log.trace(`${logPrefix} megnyitás`);
 			await mkdirp(dir);
 			await dijnet.sleep(process.env.SLEEP);
 			await dijnet.szamla_select(invoice.rowid, tmp(`szamla_select_${invoice.rowid}.html`));
@@ -77,14 +78,15 @@ const start = async () => {
 			const files = dijnet.parse_szamla_letolt(szamla_letolt_response);
 			for (let f = 0; f < files.length; f++) {
 				const file = files[f];
-				log.info(`${logPrefix} ${file} letöltése`);
+				log.trace(`${logPrefix} ${file} letöltése`);
 				await dijnet.sleep(process.env.SLEEP);
 				await dijnet.download(file, dir);
 			}
 
 			markAlreadyCrawled(invoice.billId);
-			log.success(`${logPrefix} ${files.length} fájl lementve`);
-			log.info('Visszatérés a számla listához');
+			log.trace(`${logPrefix} ${files.length} fájl lementve`);
+			log.success(`${invoices.length} db új számlából ${i + 1} db lementve [${Math.round((i + 1) / invoices.length * 100)}%]`);
+			log.trace('Visszatérés a számla listához');
 			await dijnet.sleep(3);
 			await dijnet.szamla_list(tmp(`szamla_list_${invoice.rowid}.html`));
 		}

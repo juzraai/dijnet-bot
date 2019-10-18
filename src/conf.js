@@ -4,7 +4,7 @@ const cli = require('./cli');
 function configurate() {
 	// Load environment variables and defaults
 	dotenv.config();
-	process.env.LOG_LEVEL = 2;
+	process.env.LOG_LEVEL = process.env.LOG_LEVEL || 2;
 	process.env.OUTPUT_DIR = process.env.OUTPUT_DIR || './szamlak';
 	process.env.SLEEP = process.env.SLEEP || 3;
 	process.env.TEMP_DIR = process.env.TEMP_DIR || '';
