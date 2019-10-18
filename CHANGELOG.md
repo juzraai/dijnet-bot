@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/juzraai/dijnet-bot/compare/v1.3.0...v1.4.0) (2019-10-18)
+
+
+### Features
+
+* hibakezelés javított kommunikációval ([99dbdeb](https://github.com/juzraai/dijnet-bot/commit/99dbdeb))
+* log szintek és szövegek újragondolva (informatívabb logolás) ([8dbb964](https://github.com/juzraai/dijnet-bot/commit/8dbb964))
+* program verzió kiírása induláskor ([15acdf3](https://github.com/juzraai/dijnet-bot/commit/15acdf3))
+
 ## [1.3.0](https://github.com/juzraai/dijnet-bot/compare/v1.2.0...v1.3.0) (2019-10-11)
 
 
