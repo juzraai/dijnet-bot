@@ -16,7 +16,6 @@ function configurate() {
 	if (!process.env.DIJNET_USER || !process.env.DIJNET_PASS) {
 		cli.printHelpAndExit();
 	}
-
 }
 
 module.exports = configurate;

@@ -1,10 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('util').promisify(require('mkdirp'));
+const packageJson = require('../package.json');
 const configurate = require('./conf');
 const { handleError } = require('./err');
 const dijnet = require('./lib');
 const log = require('./logger');
+
+console.log(`Díjnet Bot v${packageJson.version}\n`);
 
 configurate();
 
