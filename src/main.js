@@ -1,10 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('util').promisify(require('mkdirp'));
-require('./conf'); // eslint-disable-line import/no-unassigned-import
+const configurate = require('./conf');
 const { handleError } = require('./err');
 const dijnet = require('./lib');
 const log = require('./logger');
+
+configurate();
 
 function tmp(name) {
 	return process.env.TEMP_DIR.length === 0 ? null : path.join(process.env.TEMP_DIR, name);
