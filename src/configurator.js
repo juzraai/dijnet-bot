@@ -1,10 +1,11 @@
 const dotenv = require('dotenv');
+const prompts = require('prompts');
 const cli = require('./cli');
 const Config = require('./config');
 
 /**
- * Fetches configuration from environment variables (.env) and command line
- * arguments in this order. If user or pass is missing at the end,
+ * Fetches configuration from environment variables (.env), command line
+ * arguments and prompts, in this order. If user or pass is missing at the end,
  * it will print out help and exit.
  *
  * @returns {Config} Configuration
@@ -15,6 +16,9 @@ async function getConfig() {
 
 	loadEnv(config);
 	loadArgs(program, config);
+	if (!config.user || !config.pass) {
+		await loadPrompts(config);
+	}
 	if (!config.user || !config.pass) {
 		program.help();
 	}
@@ -81,6 +85,32 @@ function loadArgs(program, config) {
 		config.quiet = true;
 		config.verbose = false;
 	}
+	return config;
+}
+
+/**
+ * @param {Config} config Configuration to be updated
+ * @returns {Config} The same configuration which is also updated
+ */
+async function loadPrompts(config) {
+	const questions = [
+		{
+			type: 'text',
+			name: 'user',
+			message: 'Díjnet felhasználóneved'
+		},
+		{
+			type: 'password',
+			name: 'pass',
+			message: 'Díjnet jelszavad'
+		}
+	];
+
+	console.log('');
+	const response = await prompts(questions);
+	console.log('');
+	config.user = response.user;
+	config.pass = response.pass;
 	return config;
 }
 

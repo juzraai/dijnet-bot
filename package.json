@@ -43,6 +43,7 @@
     "kleur": "^3.0.3",
     "lodash.deburr": "^4.1.0",
     "mkdirp": "^0.5.1",
+    "prompts": "^2.2.1",
     "single-instance": "0.0.1",
     "tough-cookie": "^3.0.0"
   },
