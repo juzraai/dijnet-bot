@@ -26,7 +26,7 @@ A **Díjnet Bot** lementi az **összes [Díjnet](https://www.dijnet.hu/)-en tár
 1. (opcionális) Lehetőség van a program beállításait rögzíteni, 2 módon is:
 	1. Az egyik mód az, hogy abban a könyvtárban, ahonnan a programot indítod, kreálsz egy `.env` fájlt, amit a `.env.example` fájl másolásával és átnevezésével teszel meg. A fájlban további instrukciókat találsz a beállítások szerkesztéséhez.
 	1. A másik mód az, hogy környezeti változókat állítasz be a rendszereden. A környezeti változók nevei és lehetséges értékei szintén a `.env.example` fájlban vannak leírva.
-1. A program a `dijnet-bot` paranccsal indítható, melynek a beállítások megadhatók parancssori argumentumokként is. Ezek felülbírálják a környezeti változókat és a `.env` fájlban rögzített beállításokat. A parancssori argumentumok bemutatásához futtasd a programot a `-h` kapcsolóval:
+1. A program a `dijnet-bot` paranccsal indítható, melynek a beállítások megadhatók parancssori argumentumokként is, illetve a Díjnet belépési adatokat meg is tudja kérdezni. Ezek felülbírálják a környezeti változókat és a `.env` fájlban rögzített beállításokat. A parancssori argumentumok bemutatásához futtasd a programot a `-h` kapcsolóval:
 
 ```
 $ dijnet-bot -h
@@ -36,6 +36,15 @@ Példa a futtatásra (számlák letöltésének indítása, alapértelmezett be�
 
 ```
 $ dijnet-bot -u felhasználónév -p jelszó
+```
+
+Ha a programnak nem adsz meg Díjnet felhasználónevet vagy jelszót, akkor ezeket meg fogja kérdezni:
+
+```
+$ dijnet-bot
+
+√ Díjnet felhasználóneved > felhasználónév
+? Díjnet jelszavad >
 ```
 
 
@@ -93,4 +102,8 @@ Az automatizálási feladatra már mások is készítettek szkripteket (pl. [wol
 
 ## Közreműködés
 
-Ha kérdésed, ötleted van, vagy hibát találtál, kérlek nyiss egy új ticketet az [*Issues* fülön](https://github.com/juzraai/dijnet-bot/issues). Ha netán meg is javítottál valamit, lécci küldj egy pull request-et.
+Ha kérdésed, ötleted, esetleg feature request-ed van, bátran nyiss egy ticketet az [*Issues* fülön](https://github.com/juzraai/dijnet-bot/issues)! :)
+
+Ha hibát találtál, kérlek szintén jelezd ugyanitt, megadva minél több részletet a hibához (hibaüzenet, `error.log` fájl tartalma, vagy elvárt és tapasztalt működés különbsége).
+
+Ha netán meg is bütyköltél valamit, lécci küldj egy pull request-et.
