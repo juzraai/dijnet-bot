@@ -1,14 +1,22 @@
-const program = require('commander');
+const commander = require('commander');
+const Config = require('./config'); // eslint-disable-line no-unused-vars
 
-function config() {
+/**
+ * Creates a Commander.js program definiton.
+ *
+ * @param {Config} defaultConfig Configuration to be used to print default values
+ * @returns {commander.Command} Commander.js program definiton
+ */
+function getCli(defaultConfig) {
+	const program = new commander.Command();
 	program
 		.name('dijnet-bot')
-		.description('Automatikusan lementi az összes számládat. :)')
+		.description('Az összes számlád még egy helyen. :)')
 		.option('-u, --user <name>', 'Díjnet felhasználónév')
 		.option('-p, --pass <word>', 'Díjnet jelszó')
-		.option('-s, --sleep <sec>', `A Díjnet kérések közötti szünet másodpercben (alapértelmezetten ${process.env.SLEEP})`, parseInt)
-		.option('-o, --output-dir <path>', `A kimeneti mappa útvonala, ahová a számlák kerülmek (alapértelmezetten ${process.env.OUTPUT_DIR})`)
-		.option('-t, --temp-dir <path>', 'Ha meg van adva, akkor ide menti ki a letöltött HTML lapokat, további kézi elemzés céljára')
+		.option('-s, --sleep <sec>', `A Díjnet kérések közötti szünet másodpercben (alapértelmezetten ${defaultConfig.sleep})`, parseInt)
+		.option('-o, --output-dir <path>', `A kimeneti mappa útvonala, ahová a számlák kerülmek (alapértelmezetten ${defaultConfig.outputDir})`)
+		.option('-t, --temp-dir <path>', 'Ha meg van adva, akkor ide menti ki a letöltött HTML lapokat és cookie-kat, további kézi elemzés céljára')
 		.option('-q, --quiet', 'Csendes mód, nem fog írni a képernyőre')
 		.option('-v, --verbose', 'Részletesebb tájékoztatás a folyamatról (alacsonyabb prioritású, mint `-q`)')
 		.helpOption('-h, --help', 'Megjeleníti ezeket a sorokat')
@@ -23,27 +31,7 @@ function config() {
 			console.log('DIJNET_PASS=jelszó');
 			console.log('');
 		});
-
-	program.parse(process.argv);
-
-	process.env.DIJNET_USER = program.user || process.env.DIJNET_USER;
-	process.env.DIJNET_PASS = program.pass || process.env.DIJNET_PASS;
-	process.env.OUTPUT_DIR = program.outputDir || process.env.OUTPUT_DIR;
-	process.env.SLEEP = Math.max(program.sleep || process.env.SLEEP, 1);
-	process.env.TEMP_DIR = program.tempDir || process.env.TEMP_DIR;
-	if (program.verbose) {
-		process.env.LOG_LEVEL = 4;
-	}
-	if (program.quiet) {
-		process.env.LOG_LEVEL = 0;
-	}
+	return program;
 }
 
-function printHelpAndExit() {
-	program.help();
-}
-
-module.exports = {
-	config,
-	printHelpAndExit
-};
+module.exports = { getCli };
