@@ -53,7 +53,7 @@ class DijnetBrowser extends Browser {
 			'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7'
 		}, options.headers || {});
 
-		return super.request(dijnetPath, Object.assign({ baseUrl: this.baseUrl }, options, { headers }));
+		return super.request(dijnetPath, Object.assign({ baseUrl: this.baseUrl, encoding: 'latin1' }, options, { headers }));
 	}
 
 	/**
