@@ -9,7 +9,10 @@ function getTimestamp() {
 }
 
 /**
- * Logger with quiet and verbose mode, and 4 message types. In non-interactive
+ * Logger with 3 operating modes (quiet, verbose and progress display) and 4
+ * message types. On interactive terminals and in non-quiet, non-verbose mode,
+ * some lines will be overwritten by the next to make the screen as clean as
+ * possible, for better understaning of the bot's progress. In non-interactive
  * standard outputs (e.g. redirects), verbose mode will be activated. Verbose
  * mode prints out every log message with a timestamp prefix.
  */
@@ -27,18 +30,22 @@ class Logger {
 	 * @returns {Logger} This object
 	 */
 	init() {
-		this.log(`DíjnetBot v${packageInfo.version}\n`, kleur.white, true);
+		this.log(`DíjnetBot v${packageInfo.version}\n`, kleur.white, true, true, false);
 		return this;
 	}
 
 	/**
-	 * Prints out the given message to standard output.
+	 * Prints out the given message to standard output. Clears the current
+	 * line before writing out the message. Applying newlines before or
+	 * after the message is configurable.
 	 *
 	 * @param {string} message Message
 	 * @param {kleur.Color} colorFunc  Kleur color function
 	 * @param {boolean} bold Whether message should be displayed with bold font
+	 * @param {boolean} closeLineAfter Whether newline is needed after message (otherwise the current line will be overwritten by the next one)
+	 * @param {boolean} closeLineBefore Whether newline is needed before message (otherwise the current line will overwrite the previous one)
 	 */
-	log(message, colorFunc, bold) {
+	log(message, colorFunc, bold, closeLineAfter, closeLineBefore) {
 		if (this.config.quiet) {
 			return;
 		}
@@ -67,55 +74,70 @@ class Logger {
 			return;
 		}
 
-		console.log(s);
+		// not quiet, not verbose, not TTY -> progress screen!
+
+		if (closeLineBefore) {
+			process.stdout.write('\n');
+		}
+		process.stdout.clearLine();
+		process.stdout.cursorTo(0);
+		process.stdout.write(s);
+		if (closeLineAfter) {
+			process.stdout.write('\n');
+		}
 	}
 
 	/**
-	 * Prints out an error message in red.
+	 * Prints out an error message in red. Makes sure it will be printed into a
+	 * new line and also closes the line after the message to prevent
+	 * overwrites. If error stack is available it will be printed to file.
 	 *
 	 * @param {(string|Error)} error Error message or object
 	 */
 	error(error) {
-		this.log(error.message || error, kleur.red, true);
+		this.log(error.message || error, kleur.red, true, true, true);
 		if (error.stack) {
 			const s = '\nHa biztos vagy abban, hogy helyesen konfiguráltad a Díjnet Bot-ot, akkor a hiba a programban lehet.\nKérlek, az alábbi linken nyiss egy új issue-t, másold be a hiba részleteit, és írd le röviden, milyen szituációban jelentkezett a hiba!\n\n-->  https://github.com/juzraai/dijnet-bot/issues\n\n';
-			this.log(s, kleur.red, true);
+			this.log(s, kleur.red, true, false);
 			try {
 				fs.writeFileSync(this.config.errorFile, `${getTimestamp()}: ${error.message}\n${error.stack}`);
 				this.log(`A hiba részleteit megtalálod a(z) ${this.config.errorFile} fájlban.`, kleur.red, true);
 			} catch (_) {
-				this.log('A hiba részletei:', kleur.red, true);
+				this.log('A hiba részletei:', kleur.red, true, false);
 				this.log(error.stack, kleur.red, false, false);
 			}
 		}
 	}
 
 	/**
-	 * Prints out a success message in green.
+	 * Prints out a success message in green. Overwrites the previous line, but
+	 * makes sure this message won't be overwritten.
 	 *
 	 * @param {string} message Message indicating success
 	 */
 	success(message) {
-		this.log(message, kleur.green, true);
+		this.log(message, kleur.green, true, true, false);
 	}
 
 	/**
-	 * Prints out an info message.
+	 * Prints out an info message. Overwrites the previous line and this
+	 * message will also be overwritten by the next one.
 	 *
 	 * @param {string} message Message informing about an operation in progress
 	 */
 	info(message) {
-		this.log(message, null, false);
+		this.log(message, null, false, false, false);
 	}
 
 	/**
-	 * Prints out a verbose-level (trace) message in grey.
+	 * Prints out a verbose-level (trace) message in grey. Overwrites the
+	 * previous line and this message will also be overwritten by the next one.
 	 *
 	 * @param {string} message Message describing a detail of a process
 	 */
 	verbose(message) {
 		if (this.config.verbose) {
-			this.log(message, kleur.grey, false);
+			this.log(message, kleur.grey, false, false, false);
 		}
 	}
 }
