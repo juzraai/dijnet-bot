@@ -16,17 +16,21 @@
     "dijnet",
     "számla",
     "szamla",
+    "bill",
     "invoice",
     "letöltés",
     "lementés",
+    "másolat",
+    "backup",
     "download",
+    "automation",
     "save",
     "crawler",
     "spider",
     "bot"
   ],
   "author": "Zsolt Jurányi (https://juzraai.github.io/)",
-  "license": "Unlicense",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/juzraai/dijnet-bot/issues"
   },
