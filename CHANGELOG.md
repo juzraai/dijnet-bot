@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/juzraai/dijnet-bot/compare/v1.4.0...v2.0.0) (2019-10-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* Az ő/ű betűt tartalmazó számlakibocsátói azonosítók vagy szolgáltatók mappaneve változhat: új mappák jönnek létre, de nem lesz redundáns letöltés. A régi fájlokat kézzel kell átmozgatni az új mappába.
+* lib.js szétdarabolva osztályokra, process.env helyett Config modellt használunk már, új logger.js - részletek: ld. JSDoc
+
+* újraírtam az egész cuccot ([6c95ad1](https://github.com/juzraai/dijnet-bot/commit/6c95ad1))
+
+
+### Bug Fixes
+
+* HTML encoding hiba, most már az ő/ű betűket is korrekten o/u-ra normalizálja ([58a2c0a](https://github.com/juzraai/dijnet-bot/commit/58a2c0a))
+
+
+### Features
+
+* átláthatóbb folyamatjelzés, a sorok felülírásával a terminálban ([d398d67](https://github.com/juzraai/dijnet-bot/commit/d398d67))
+* Díjnet bejelentkezési adatokat most már be tudja kérni prompttal is ([0a711d8](https://github.com/juzraai/dijnet-bot/commit/0a711d8))
+* színes DíjnetBot felirat és GitHub URL a logban ([10b4daf](https://github.com/juzraai/dijnet-bot/commit/10b4daf))
+
 ## [1.4.0](https://github.com/juzraai/dijnet-bot/compare/v1.3.0...v1.4.0) (2019-10-18)
 
 
