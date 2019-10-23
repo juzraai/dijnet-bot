@@ -30,7 +30,7 @@ class Logger {
 	 * @returns {Logger} This object
 	 */
 	init() {
-		this.log(`DíjnetBot v${packageInfo.version}\n`, kleur.white, true, true, false);
+		this.log(`${kleur.green('Díjnet')}${kleur.blue('Bot')} v${packageInfo.version} ${kleur.reset('by juzraai | https://github.com/juzraai/dijnet-bot')}\n`, kleur.white, true, true, false);
 		return this;
 	}
 
