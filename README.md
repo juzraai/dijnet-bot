@@ -6,6 +6,10 @@ A **Díjnet Bot** lementi az **összes [Díjnet](https://www.dijnet.hu/)-en tár
 
 
 
+![](img/scrs.gif)
+
+
+
 ## Funkciók
 
 - **Mindent visz:** az összes számla összes letölthető fájlját lementi (számla PDF, számla XML, terhelési összesítő, ...).
