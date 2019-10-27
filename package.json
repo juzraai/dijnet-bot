@@ -2,10 +2,11 @@
   "name": "dijnet-bot",
   "version": "2.0.0",
   "description": "Az összes számlád még egy helyen",
-  "bin": "index.js",
-  "main": "index.js",
-  "scripts": {
-    "release": "standard-version"
+  "author": "Zsolt Jurányi (https://juzraai.github.io/)",
+  "license": "MIT",
+  "homepage": "https://github.com/juzraai/dijnet-bot#readme",
+  "bugs": {
+    "url": "https://github.com/juzraai/dijnet-bot/issues"
   },
   "repository": {
     "type": "git",
@@ -29,12 +30,12 @@
     "spider",
     "bot"
   ],
-  "author": "Zsolt Jurányi (https://juzraai.github.io/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/juzraai/dijnet-bot/issues"
+  "bin": "index.js",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "node ./scripts/bundle.js",
+    "release": "standard-version"
   },
-  "homepage": "https://github.com/juzraai/dijnet-bot#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "commander": "^3.0.2",
@@ -48,7 +49,15 @@
     "tough-cookie": "^3.0.0"
   },
   "devDependencies": {
-    "standard-version": "^7.0.0"
+    "browserify": "^16.5.0",
+    "browserify-banner": "^1.0.15",
+    "standard-version": "^7.0.0",
+    "terser": "^4.3.9"
+  },
+  "standard-version": {
+    "scripts": {
+      "posttag": "npm run bundle"
+    }
   },
   "xo": {
     "extend": ".eslintrc"
