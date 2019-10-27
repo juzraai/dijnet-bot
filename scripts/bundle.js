@@ -12,7 +12,7 @@ const banner = require('browserify-banner');
 const terser = require('terser');
 
 const INPUT_FILE = './index.js';
-const OUTPUT_FILE ='./dijnet-bot.js';
+const OUTPUT_FILE = './dijnet-bot.js';
 
 /** @type {browserify.Options} */
 const browserifyOptions = {
@@ -48,3 +48,5 @@ browserify(INPUT_FILE, browserifyOptions)
 
 		fs.writeFileSync(OUTPUT_FILE, minified);
 	});
+
+console.log('If everything seems all right, run `npm run github`.');
