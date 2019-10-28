@@ -23,7 +23,7 @@ function getCli(defaultConfig) {
 		.on('--help', () => {
 			console.log('');
 			console.log('Példa:');
-			console.log('  $ dijnet-bot -u felhasználónév -p jelszó -s 5 -o ./osszes-szamla');
+			console.log('  $ node dijnet-bot -u felhasználónév -p jelszó -s 5 -o ./osszes-szamla');
 			console.log('');
 			console.log('A Díjnet felhasználónév és jelszó megadható környezeti változók formájában is, valamint az aktuális mappában elhelyezett `.env` fájlban is. A változók nevei DIJNET_USER és DIJNET_PASS. Az `.env` fájl szintaxisa a következő:');
 			console.log('');

@@ -23,33 +23,45 @@ A **Díjnet Bot** lementi az **összes [Díjnet](https://www.dijnet.hu/)-en tár
 
 ## Használata
 
-1. Telepíts [Node.js](https://nodejs.org/en/)-t, legalább a 8.0-ás verziót
-1. [Töltsd le a Díjnet Botot](https://github.com/juzraai/dijnet-bot/releases/latest) és csomagold ki
-1. Nyiss egy terminált/parancssort ebben a mappában, majd futtasd le az `npm i -g` parancsot, mely letölti a szükséges fájlokat (~ 12 MB) és telepíti a programot a globális NPM csomagok közé
-1. Kreálj egy üres mappát valahol, ahol a számlákat fogjuk tárolni
-1. (opcionális) Lehetőség van a program beállításait rögzíteni, 2 módon is:
-	1. Az egyik mód az, hogy abban a könyvtárban, ahonnan a programot indítod, kreálsz egy `.env` fájlt, amit a `.env.example` fájl másolásával és átnevezésével teszel meg. A fájlban további instrukciókat találsz a beállítások szerkesztéséhez.
-	1. A másik mód az, hogy környezeti változókat állítasz be a rendszereden. A környezeti változók nevei és lehetséges értékei szintén a `.env.example` fájlban vannak leírva.
-1. A program a `dijnet-bot` paranccsal indítható, melynek a beállítások megadhatók parancssori argumentumokként is, illetve a Díjnet belépési adatokat meg is tudja kérdezni. Ezek felülbírálják a környezeti változókat és a `.env` fájlban rögzített beállításokat. A parancssori argumentumok bemutatásához futtasd a programot a `-h` kapcsolóval:
+Ahhoz, hogy a programot futtatni tudd, telepítened kell a [Node.js](https://nodejs.org/en/) legalább 8-as verzióját.
+
+A **Díjnet Bot** önmagában egyetlen fájl (`dijnet-bot.js`), melyet [innen tudsz letölteni]((https://github.com/juzraai/dijnet-bot/releases/latest)).
+
+Ha duplakattintással szeretnéd futtatni (vagyis nem terminálból/parancssorból), akkor ezt a fájlt, vagy a `*.js` fájlokat az oprendszeredben hozzá kell rendelned a Node-hoz. (Windows-on: jobb klikk a fájlon -> Társítás -> Node.js vagy Másik alkalmazás -> "c:\Program Files\nodejs\node.exe")
+
+Egyéb esetben terminálból így tudod elindítani a programot:
 
 ```
-$ dijnet-bot -h
+$ node dijnet-bot
 ```
 
-Példa a futtatásra (számlák letöltésének indítása, alapértelmezett beállításokkal):
+(Opcionális: ha letöltöd a program forráskódját, és `npm i -g` segítségével telepíted, onnantól kezdve egyszerűen a `dijnet-bot` paranccsal tudod indítani bármilyen könyvtárból.)
+
+A program meg fogja kérdezi a **Díjnet** belépési adataidat, majd alapértelmezett beállításokkal megkezdi a számlák learatását.
+
+
+
+## Beállítás
+
+A programot 3 módon lehet konfigurálni:
+
+- konfigfájllal
+- környezeti változókkal
+- parancssori argumentumokkal
+
+A konfigfájlt `.env` néven kell elmenteni abba a mappába, ahonnan a **Díjnet Bot**-ot futtatod. A fájl kitöltéséhez útmutatót a [.env.example fájlban találsz](https://github.com/juzraai/dijnet-bot/blob/master/.env.example).
+
+Az `.env.example` fájlban leírt kulcs-érték párokat beállíthatod környezeti változókkén is. Ezek magasabb prioritást fognak élvezni, mint a `.env` fájl tartalma.
+
+A parancssori argumentumok listájához, magyarázatához és alapértelmezett értékeihez futtasd a programot a `-h` kapcsolóval:
 
 ```
-$ dijnet-bot -u felhasználónév -p jelszó
+$ node dijnet-bot -h
 ```
 
-Ha a programnak nem adsz meg Díjnet felhasználónevet vagy jelszót, akkor ezeket meg fogja kérdezni:
+Ezek a paraméterek felülbírálják a környezeti változókat is.
 
-```
-$ dijnet-bot
-
-√ Díjnet felhasználóneved > felhasználónév
-? Díjnet jelszavad >
-```
+Ha a program egyik fenti módon sem kap **Díjnet** felhasználónevet vagy jelszót, akkor indításkor meg fogja ezeket kérdezni.
 
 
 
