@@ -29,7 +29,7 @@ A **Díjnet Bot** önmagában egyetlen fájl (`dijnet-bot.js`), melyet [innen tu
 
 Ha duplakattintással szeretnéd futtatni (vagyis nem terminálból/parancssorból), akkor ezt a fájlt, vagy a `*.js` fájlokat az oprendszeredben hozzá kell rendelned a Node-hoz. (Windows-on: jobb klikk a fájlon -> Társítás -> Node.js vagy Másik alkalmazás -> "c:\Program Files\nodejs\node.exe")
 
-Egyéb esetben terminálból így tudod elindítani a programot:
+Egyéb esetben terminálból így tudod elindítani a programot (abból a könyvtárból, ahol a `dijnet-bot.js` van):
 
 ```
 $ node dijnet-bot
@@ -43,17 +43,17 @@ A program meg fogja kérdezi a **Díjnet** belépési adataidat, majd alapértel
 
 ## Beállítás
 
-A programot 3 módon lehet konfigurálni:
+A program némely paramétere állítható (pl. kimeneti mappa, kérések közti várakozás). Ha az alapértelmezett beállítások nem felelnek meg, 3 módon tudod a programot konfigurálni:
 
 - konfigfájllal
 - környezeti változókkal
 - parancssori argumentumokkal
 
-A konfigfájlt `.env` néven kell elmenteni abba a mappába, ahonnan a **Díjnet Bot**-ot futtatod. A fájl kitöltéséhez útmutatót a [.env.example fájlban találsz](https://github.com/juzraai/dijnet-bot/blob/master/.env.example).
+A konfigfájlt `.env` néven kell elmenteni abba a mappába, ahonnan a **Díjnet Bot**-ot futtatod. A beállítási lehetőségekről és a fájl formátumáról a [.env.example fájl](https://github.com/juzraai/dijnet-bot/blob/master/.env.example) ad útbaigazítást.
 
-Az `.env.example` fájlban leírt kulcs-érték párokat beállíthatod környezeti változókkén is. Ezek magasabb prioritást fognak élvezni, mint a `.env` fájl tartalma.
+A `.env.example` fájlban leírt kulcs-érték párokat beállíthatod környezeti változókként is. Az így megadott értékek magasabb prioritást fognak élvezni, mint amit a `.env` fájl tartalmaz.
 
-A parancssori argumentumok listájához, magyarázatához és alapértelmezett értékeihez futtasd a programot a `-h` kapcsolóval:
+A parancssori argumentumok leírása és alapértelmezett értékeik a `-h` kapcsolóval tekinthetők meg:
 
 ```
 $ node dijnet-bot -h
@@ -118,7 +118,7 @@ Az automatizálási feladatra már mások is készítettek szkripteket (pl. [wol
 
 ## Közreműködés
 
-Ha kérdésed, ötleted, esetleg feature request-ed van, bátran nyiss egy ticketet az [*Issues* fülön](https://github.com/juzraai/dijnet-bot/issues)! :)
+Ha kérdésed, ötleted, igényed (feature request) van, bátran nyiss egy ticketet az [*Issues* fülön](https://github.com/juzraai/dijnet-bot/issues)! :)
 
 Ha hibát találtál, kérlek szintén jelezd ugyanitt, megadva minél több részletet a hibához (hibaüzenet, `error.log` fájl tartalma, vagy elvárt és tapasztalt működés különbsége).
 
