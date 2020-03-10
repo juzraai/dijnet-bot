@@ -56,7 +56,7 @@ class Repo {
 	 * @returns {boolean} Whether bill is already downloaded completely (false means it is new)
 	 */
 	isDone(bill) {
-		return this.crawledBillIds.includes(bill.billId);
+		return this.crawledBillIds.includes(this.normalizeBillId(bill));
 	}
 
 	/**
@@ -73,7 +73,17 @@ class Repo {
 	 * @param {Bill} bill Bill
 	 */
 	markAsDone(bill) {
-		fs.appendFileSync(this.doneFile, `${bill.billId}\n`);
+		fs.appendFileSync(this.doneFile, `${this.normalizeBillId(bill)}\n`);
+	}
+
+	/**
+	 * Normalizes bill ID by removing newline characters.
+	 *
+	 * @param {Bill} bill Bill
+	 * @returns {string} Normalized bill ID
+	 */
+	normalizeBillId(bill) {
+		return bill.billId.replace(/[\r\n]+/, ' ').trim();
 	}
 }
 
