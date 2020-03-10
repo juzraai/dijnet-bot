@@ -23,7 +23,7 @@ A **Díjnet Bot** lementi az **összes [Díjnet](https://www.dijnet.hu/)-en tár
 
 ## Használata
 
-Ahhoz, hogy a programot futtatni tudd, telepítened kell a [Node.js](https://nodejs.org/en/) legalább 8-as verzióját.
+Ahhoz, hogy a programot futtatni tudd, telepítened kell a [Node.js](https://nodejs.org/en/) legalább 12-es verzióját.
 
 A **Díjnet Bot** önmagában egyetlen fájl (`dijnet-bot.js`), melyet [innen tudsz letölteni]((https://github.com/juzraai/dijnet-bot/releases/latest)).
 
