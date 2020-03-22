@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "commander": "^4.1.1",
+    "commander": "^5.0.0",
     "dotenv": "^8.2.0",
     "got": "^10.6.0",
     "kleur": "^3.0.3",
@@ -47,7 +47,7 @@
     "mkdirp": "^1.0.3",
     "prompts": "^2.3.2",
     "single-instance": "0.0.1",
-    "tough-cookie": "^3.0.0"
+    "tough-cookie": "^3.0.1"
   },
   "devDependencies": {
     "browserify": "^16.5.0",
