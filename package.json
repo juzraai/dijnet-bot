@@ -41,7 +41,7 @@
     "cheerio": "^1.0.0-rc.3",
     "commander": "^4.1.1",
     "dotenv": "^8.2.0",
-    "got": "^9.6.0",
+    "got": "^10.6.0",
     "kleur": "^3.0.3",
     "lodash.deburr": "^4.1.0",
     "mkdirp": "^1.0.3",

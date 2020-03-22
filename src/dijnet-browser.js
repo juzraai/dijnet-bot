@@ -53,7 +53,7 @@ class DijnetBrowser extends Browser {
 			'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7'
 		}, options.headers || {});
 
-		return super.request(dijnetPath, Object.assign({ baseUrl: this.baseUrl, encoding: 'latin1' }, options, { headers }));
+		return super.request(dijnetPath, Object.assign({ prefixUrl: this.baseUrl, encoding: 'latin1' }, options, { headers }));
 	}
 
 	/**
@@ -93,7 +93,7 @@ class DijnetBrowser extends Browser {
 	 * @param {string} targetDir Target directory
 	 */
 	async download(dijnetPath, targetDir) {
-		const r = await this.request(dijnetPath, { method: 'GET', encoding: null });
+		const r = await this.request(dijnetPath, { method: 'GET', responseType: 'buffer' });
 		const fn = r.headers['content-disposition'].replace(/.*filename=/, '');
 		const kb = Math.round(r.body.length / 102.4) / 10;
 		this.logger.verbose(`Fájl mentése (${kb} KB): ${fn}`);
