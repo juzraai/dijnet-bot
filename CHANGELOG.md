@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.3](https://github.com/juzraai/dijnet-bot/compare/v2.1.2...v2.1.3) (2020-03-29)
+
+
+### Bug Fixes
+
+* többsoros számla azonosítókkal **most már tényleg** nem lesz gond inkrementális letöltésnél ([b23e6ce](https://github.com/juzraai/dijnet-bot/commit/b23e6ce2523594729cab5bd0b05e9d3e722467d6)), closes [#3](https://github.com/juzraai/dijnet-bot/issues/3)
+
 ### [2.1.2](https://github.com/juzraai/dijnet-bot/compare/v2.1.1...v2.1.2) (2020-03-22)
 
 ### [2.1.1](https://github.com/juzraai/dijnet-bot/compare/v2.1.0...v2.1.1) (2020-03-10)
