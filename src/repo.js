@@ -83,7 +83,7 @@ class Repo {
 	 * @returns {string} Normalized bill ID
 	 */
 	normalizeBillId(bill) {
-		return bill.billId.replace(/[\r\n]+/, ' ').trim();
+		return bill.billId.replace(/[\r\n]+/g, ' ').trim();
 	}
 }
 
