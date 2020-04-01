@@ -25,7 +25,7 @@ A **Díjnet Bot** lementi az **összes [Díjnet](https://www.dijnet.hu/)-en tár
 
 Ahhoz, hogy a programot futtatni tudd, telepítened kell a [Node.js](https://nodejs.org/en/) legalább 12-es verzióját.
 
-A **Díjnet Bot** önmagában egyetlen fájl (`dijnet-bot.js`), melyet [innen tudsz letölteni]((https://github.com/juzraai/dijnet-bot/releases/latest)).
+A **Díjnet Bot** önmagában egyetlen fájl (`dijnet-bot.js`), melyet [innen tudsz letölteni](https://github.com/juzraai/dijnet-bot/releases/latest).
 
 Ha duplakattintással szeretnéd futtatni (vagyis nem terminálból/parancssorból), akkor ezt a fájlt, vagy a `*.js` fájlokat az oprendszeredben hozzá kell rendelned a Node-hoz. (Windows-on: jobb klikk a fájlon -> Társítás -> Node.js vagy Másik alkalmazás -> "c:\Program Files\nodejs\node.exe")
 
