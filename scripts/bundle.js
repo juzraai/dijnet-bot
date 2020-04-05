@@ -47,6 +47,6 @@ browserify(INPUT_FILE, browserifyOptions)
 		console.log(`Minified size: ${Math.floor(minified.length / 1024 / 10) * 10} KB`);
 
 		fs.writeFileSync(OUTPUT_FILE, minified);
-	});
 
-console.log('If everything seems all right, run `npm run github`.');
+		console.log('If everything seems all right, run `npm run github`.');
+	});
