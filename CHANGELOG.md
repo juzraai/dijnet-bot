@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.4](https://github.com/juzraai/dijnet-bot/compare/v2.1.3...v2.1.4) (2020-04-16)
+
+
+### Bug Fixes
+
+* bundle szkript javítás ([91f7405](https://github.com/juzraai/dijnet-bot/commit/91f740554db21525cd04fbbdd1deeffc1dd19bbe))
+* latest release link javítva a README-ben ([598d99e](https://github.com/juzraai/dijnet-bot/commit/598d99e982c4351b1b4cad541326ad470ee35fbd))
+* login check-nél kisbetűsen keressük a felhasználónevet ([a3ab09e](https://github.com/juzraai/dijnet-bot/commit/a3ab09e74507c15336c4deebece3c0415afb7e9c)), closes [#6](https://github.com/juzraai/dijnet-bot/issues/6)
+
 ### [2.1.3](https://github.com/juzraai/dijnet-bot/compare/v2.1.2...v2.1.3) (2020-03-29)
 
 
