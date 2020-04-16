@@ -74,7 +74,7 @@ class DijnetAgent {
 	}
 
 	checkIfLoggedIn() {
-		this.check(this.config.user, 'Felhasználónév nem szerepel az oldalon / nem vagyunk bejelentkezve');
+		this.check(this.config.user.toLowerCase(), 'Felhasználónév nem szerepel az oldalon / nem vagyunk bejelentkezve');
 		this.checkBillSearchLink();
 	}
 
