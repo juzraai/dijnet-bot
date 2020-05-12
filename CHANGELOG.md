@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.5](https://github.com/juzraai/dijnet-bot/compare/v2.1.4...v2.1.5) (2020-05-12)
+
+
+### Bug Fixes
+
+* aktualizálás az új számla lista HTML-hez ([f17e2a2](https://github.com/juzraai/dijnet-bot/commit/f17e2a21439ad0f4379c26a89aed69c40ff4e887)), closes [#7](https://github.com/juzraai/dijnet-bot/issues/7)
+
 ### [2.1.4](https://github.com/juzraai/dijnet-bot/compare/v2.1.3...v2.1.4) (2020-04-16)
 
 
