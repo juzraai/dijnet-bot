@@ -52,7 +52,7 @@ class DijnetAgent {
 	 */
 	async openBill(rowId) {
 		this.checkIfLoggedIn();
-		this.checkBillSelectLink();
+		this.checkBillSelectCode();
 		await this.browser.navigate(`/control/szamla_select?vfw_coll=szamla_list&vfw_coll_index=0&vfw_rowid=${rowId}&vfw_colid=ugyfelazon|S`);
 	}
 
@@ -86,8 +86,8 @@ class DijnetAgent {
 		this.check('action="szamla_search_submit"', 'Számlakereső form nem található / nem a számlakereső oldalon vagyunk');
 	}
 
-	checkBillSelectLink() {
-		this.check('/control/szamla_select', 'Számla kiválasztás link nem található / nem a keresési találatok oldalán vagyunk');
+	checkBillSelectCode() {
+		this.check('clickSzamlaGTM(\'szamla_select\'', 'Számla kiválasztás kódja nem található / nem a keresési találatok oldalán vagyunk');
 	}
 
 	checkBillDownloadsLink() {

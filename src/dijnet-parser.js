@@ -43,7 +43,7 @@ function parseBillSearchResults(body) {
 		});
 		bill.billIssuerId = normalize(bill.billIssuerId);
 		bill.serviceProvider = normalize(bill.serviceProvider);
-		bill.rowId = $(tr).html().toString().match(/rowid=(\d+)/)[1];
+		bill.rowId = $(tr).attr('id').match(/r_(\d+)/)[1];
 		return bill;
 	});
 	return bills;
