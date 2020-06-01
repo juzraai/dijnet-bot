@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.6](https://github.com/juzraai/dijnet-bot/compare/v2.1.5...v2.1.6) (2020-06-01)
+
+
+### Bug Fixes
+
+* nem elérhető fájlok kezelése (átugrás, hibajelzés) ([00ec4af](https://github.com/juzraai/dijnet-bot/commit/00ec4afc2a7c0707a8729ca88d2c7426521a7627)), closes [#8](https://github.com/juzraai/dijnet-bot/issues/8)
+
 ### [2.1.5](https://github.com/juzraai/dijnet-bot/compare/v2.1.4...v2.1.5) (2020-05-12)
 
 
