@@ -29,6 +29,7 @@ async function start() {
 	bills = bills.filter(repo.isNew.bind(repo));
 	logger.success(`${allBillsCount} db számla van a rendszerben: ${bills.length} db új, ${allBillsCount - bills.length} db lementve korábban`);
 
+	let billsDownloaded = 0;
 	for (let i = 0; i < bills.length; i++) {
 		const bill = bills[i];
 		const prefix = `${i}/${bills.length} db új számla lementve (${Math.round(i / bills.length * 100)}%) | ${bill.dateOfIssue} ${bill.serviceProvider}`;
@@ -37,16 +38,24 @@ async function start() {
 		await agent.openBillDownloads();
 
 		const files = parser.parseBillDownloads(agent.browser.lastNavigationResponse.body);
+		let allFilesDownloaded = true;
 		for (let j = 0; j < files.length; j++) {
 			const file = files[j];
 			logger.info(`${prefix} | [${j + 1}/${files.length}] ${file.name}`);
-			await browser.download(file.dijnetPath, repo.directoryFor(bill));
+			const s = await browser.download(file.dijnetPath, repo.directoryFor(bill));
+			if (!s) {
+				logger.error(`${prefix} | Nem sikerült letölteni: ${file.name}`);
+				allFilesDownloaded = false;
+			}
 		}
-		repo.markAsDone(bill);
+		if (allFilesDownloaded) {
+			billsDownloaded++;
+			repo.markAsDone(bill);
+		}
 
 		await agent.openBillList();
 	}
-	logger.success(`${bills.length} db új számla lementve!`);
+	logger.success(`${billsDownloaded} db új számla lementve!`);
 	process.exit(0);
 }
 

@@ -91,13 +91,17 @@ class DijnetBrowser extends Browser {
 	 *
 	 * @param {string} dijnetPath Díjnet path, relative to `baseUrl`
 	 * @param {string} targetDir Target directory
+	 * @returns False if there was no HTTP header indicating a downloadable file. True if file was downloaded.
 	 */
 	async download(dijnetPath, targetDir) {
 		const r = await this.request(dijnetPath, { method: 'GET', responseType: 'buffer' });
-		const fn = r.headers['content-disposition'].replace(/.*filename=/, '');
+		const cd = r.headers['content-disposition'];
+		if (!cd) return false; // "A számlához jelenleg nem elérhető a PDF formátumú számlakép."
+		const fn = cd.replace(/.*filename=/, '');
 		const kb = Math.round(r.body.length / 102.4) / 10;
 		this.logger.verbose(`Fájl mentése (${kb} KB): ${fn}`);
 		fs.writeFileSync(path.join(targetDir, fn), r.body, 'binary');
+		return true;
 	}
 
 	/**
