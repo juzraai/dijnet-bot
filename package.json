@@ -53,7 +53,7 @@
     "browserify": "^16.5.2",
     "browserify-banner": "^2.0.4",
     "standard-version": "^9.0.0",
-    "terser": "^4.8.0"
+    "terser": "^4.8.1"
   },
   "standard-version": {
     "scripts": {
