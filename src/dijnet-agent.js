@@ -53,7 +53,7 @@ class DijnetAgent {
 	async openBill(rowId) {
 		this.checkIfLoggedIn();
 		this.checkBillSelectCode();
-		await this.browser.navigate(`/control/szamla_select?vfw_coll=szamla_list&vfw_coll_index=0&vfw_rowid=${rowId}&vfw_colid=ugyfelazon|S`);
+		await this.browser.navigate(`/control/szamla_select?vfw_coll=szamla_list&vfw_rowid=${rowId}`);
 	}
 
 	/**
@@ -91,7 +91,7 @@ class DijnetAgent {
 	}
 
 	checkBillDownloadsLink() {
-		this.check('href="szamla_letolt"', 'Számla letöltés link nem található / nem egy megnyitott számla oldalán vagyunk');
+		this.check('href="/ekonto/control/szamla_letolt"', 'Számla letöltés link nem található / nem egy megnyitott számla oldalán vagyunk');
 	}
 
 	check(requiredContent, errorMessage) {

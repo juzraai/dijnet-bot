@@ -55,7 +55,7 @@ function parseBillSearchResults(body) {
  */
 function parseBillDownloads(body) {
 	const $ = cheerio.load(body, { normalizeWhitespace: true });
-	return $('a.xt_link__download').toArray()
+	return $('.panel_bs a[href*=_]').toArray()
 		.map(a => new BillFile(normalize($(a).text()), `/control/${a.attribs.href}`))
 		.filter(bf => !bf.dijnetPath.includes('://'));
 }
