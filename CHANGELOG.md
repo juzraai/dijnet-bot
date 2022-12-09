@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.8](https://github.com/juzraai/dijnet-bot/compare/v2.1.7...v2.1.8) (2022-12-09)
+
+
+### Bug Fixes
+
+* számla adatlap és letöltési link parszolási hiba javítva ([52512fc](https://github.com/juzraai/dijnet-bot/commit/52512fc3b6a63c8b15cf692bee59c2ba49b3c5b6))
+* számla lista parszolási hiba javítva ([fdab220](https://github.com/juzraai/dijnet-bot/commit/fdab2206773c1406711a2fb002c7e31489a9fb3d))
+
 ### [2.1.7](https://github.com/juzraai/dijnet-bot/compare/v2.1.6...v2.1.7) (2020-10-31)
 
 
