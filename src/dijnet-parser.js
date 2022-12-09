@@ -9,7 +9,7 @@ const BillFile = require('./bill-file');
  */
 function parseBillSearchResults(body) {
 	const $ = cheerio.load(body, { normalizeWhitespace: true });
-	const thIds = $('.szamla_table th').toArray().map(th => $(th).attr('id'));
+	const thIds = $('table thead th').toArray().map(th => $(th).attr('id'));
 	const TH_ID = {
 		billId: 'szl',
 		billIssuerId: 'aln',
@@ -35,7 +35,7 @@ function parseBillSearchResults(body) {
 		return text.trim();
 	}
 
-	const bills = $('.szamla_table tbody tr').toArray().map(tr => {
+	const bills = $('table tbody tr').toArray().map(tr => {
 		const bill = new Bill();
 		Object.entries(TH_ID).forEach(e => {
 			const [field, id] = e;
