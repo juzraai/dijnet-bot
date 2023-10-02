@@ -87,7 +87,7 @@ class DijnetAgent {
 	}
 
 	checkBillSelectCode() {
-		this.check('clickSzamlaGTM(\'szamla_select\'', 'Számla kiválasztás kódja nem található / nem a keresési találatok oldalán vagyunk');
+		this.check('clickSzamla(\'szamla_select\'', 'Számla kiválasztás kódja nem található / nem a keresési találatok oldalán vagyunk');
 	}
 
 	checkBillDownloadsLink() {
