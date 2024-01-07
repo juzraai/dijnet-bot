@@ -19,7 +19,10 @@ class Browser {
 	 * @returns {got.GotPromise<got.Response>} Response
 	 */
 	async request(url, options) {
-		return got(url, Object.assign({ cookieJar: this.cookieJar }, options));
+		return got(url, Object.assign({
+			cookieJar: this.cookieJar,
+			dnsCache: new Map(),
+		}, options));
 	}
 
 	/**
