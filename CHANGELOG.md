@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.10](https://github.com/juzraai/dijnet-bot/compare/v2.1.9...v2.1.10) (2024-01-07)
+
+
+### Bug Fixes
+
+* DNS gyorsítótár beépítve (remélhetőleg javítja [#34](https://github.com/juzraai/dijnet-bot/issues/34)-et) ([fe0391e](https://github.com/juzraai/dijnet-bot/commit/fe0391ec4a4d69fe3bf634bc49daef072d244fde))
+* sleep paraméter kezelés refaktorálva, doksi kiegészítve ([39a326a](https://github.com/juzraai/dijnet-bot/commit/39a326af0fee153470955a8f917eff329ee7aff7))
+
 ### [2.1.9](https://github.com/juzraai/dijnet-bot/compare/v2.1.8...v2.1.9) (2023-10-02)
 
 
