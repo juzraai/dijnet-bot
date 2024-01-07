@@ -63,7 +63,7 @@ function loadEnv(config) {
 }
 
 /**
- * @param {commander.Command} program Commander.js program definiton
+ * @param {commander.Command} program Commander.js program definition
  * @param {Config} config Configuration to be updated
  * @returns {Config} The same configuration which is also updated
  */

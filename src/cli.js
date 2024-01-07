@@ -2,10 +2,10 @@ const commander = require('commander');
 const Config = require('./config'); // eslint-disable-line no-unused-vars
 
 /**
- * Creates a Commander.js program definiton.
+ * Creates a Commander.js program definition.
  *
  * @param {Config} defaultConfig Configuration to be used to print default values
- * @returns {commander.Command} Commander.js program definiton
+ * @returns {commander.Command} Commander.js program definition
  */
 function getCli(defaultConfig) {
 	const program = new commander.Command();
