@@ -39,7 +39,7 @@ function loadEnv(config) {
 	config.outputDir = process.env.OUTPUT_DIR || config.outputDir;
 	config.pass = process.env.DIJNET_PASS || config.pass;
 
-	config.sleep = Math.max(parseInt(process.env.SLEEP || 0, 10), config.sleep);
+	config.sleep = Math.max(parseInt(process.env.SLEEP, 10) || config.sleep, new Config().sleep);
 	config.tempDir = process.env.TEMP_DIR || config.tempDir;
 	config.user = process.env.DIJNET_USER || config.user;
 
@@ -72,7 +72,7 @@ function loadArgs(program, config) {
 
 	config.outputDir = program.outputDir || config.outputDir;
 	config.pass = program.pass || config.pass;
-	config.sleep = Math.max(parseInt(program.sleep || 0, 10), new Config().sleep); // env maybe modified, but CLI supposed to overwrite it, we have to maximize for default value
+	config.sleep = Math.max(parseInt(program.sleep, 10) || config.sleep, new Config().sleep);
 	config.tempDir = program.tempDir || config.tempDir;
 	config.user = program.user || config.user;
 
