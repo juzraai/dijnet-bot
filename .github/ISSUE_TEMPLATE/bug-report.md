@@ -1,7 +1,7 @@
 ---
 name: Hibát tapasztaltam! :(
 about: Írd le a hibajelenség részleteit
-title: '(hibajelenség röviden)'
+title: 'Írd le a hibát röviden (pl. hibaüzenet)'
 labels: bug
 assignees: juzraai
 ---
@@ -21,8 +21,8 @@ assignees: juzraai
 Ide másold be kérlek.
 ```
 
-**Rendszerinformáció**
+**Rendszerinformációk**
 
 -   Operációs rendszer: Windows? Linux?
--   Node verzió: ?
+-   Node verzió (`node -v`): ?
 -   Program verzió: ?
