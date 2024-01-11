@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
-import mkdirp from 'mkdirp';
+import { sync as mkdirp } from 'mkdirp';
 import Browser from './browser.js';
 import Config from './config.js';
 import Logger from './logger.js';
@@ -33,7 +33,7 @@ export default class DijnetBrowser extends Browser {
 	init() {
 		if (this.config.tempDir) {
 			this.logger.verbose(`Könyvtár létrehozása: ${this.config.tempDir}`);
-			mkdirp.sync(this.config.tempDir);
+			mkdirp(this.config.tempDir);
 		}
 
 		return this;

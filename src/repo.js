@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import mkdirp from 'mkdirp';
+import { sync as mkdirp } from 'mkdirp';
 import Config from './config.js';
 import Logger from './logger.js';
 

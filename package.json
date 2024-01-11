@@ -45,7 +45,7 @@
 		"got": "^10.7.0",
 		"kleur": "^3.0.3",
 		"lodash.deburr": "^4.1.0",
-		"mkdirp": "^1.0.4",
+		"mkdirp": "^3.0.1",
 		"prompts": "^2.3.2",
 		"single-instance": "0.0.1",
 		"tough-cookie": "^3.0.1"
