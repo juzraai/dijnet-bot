@@ -27,12 +27,18 @@ async function start() {
 	let bills = parser.parseBillSearchResults(agent.browser.lastNavigationResponse.body);
 	const allBillsCount = bills.length;
 	bills = bills.filter(repo.isNew.bind(repo));
-	logger.success(`${allBillsCount} db számla van a rendszerben: ${bills.length} db új, ${allBillsCount - bills.length} db lementve korábban`);
+	logger.success(
+		`${allBillsCount} db számla van a rendszerben: ${bills.length} db új, ${
+			allBillsCount - bills.length
+		} db lementve korábban`,
+	);
 
 	let billsDownloaded = 0;
 	for (let i = 0; i < bills.length; i++) {
 		const bill = bills[i];
-		const prefix = `${i}/${bills.length} db új számla lementve (${Math.round(i / bills.length * 100)}%) | ${bill.dateOfIssue} ${bill.serviceProvider}`;
+		const prefix = `${i}/${bills.length} db új számla lementve (${Math.round(
+			(i / bills.length) * 100,
+		)}%) | ${bill.dateOfIssue} ${bill.serviceProvider}`;
 		logger.info(`${prefix} | Megnyitás...`);
 		await agent.openBill(bill.rowId);
 		await agent.openBillDownloads();

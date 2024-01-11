@@ -18,7 +18,7 @@ const OUTPUT_FILE = './dijnet-bot.js';
 const browserifyOptions = {
 	// --node
 	bare: true,
-	browserField: false
+	browserField: false,
 };
 
 const bannerOptions = {
@@ -29,7 +29,7 @@ const bannerOptions = {
 <%= pkg.homepage %>
 
 @author <%= pkg.author %>
-@license <%= pkg.license %>`.trim()
+@license <%= pkg.license %>`.trim(),
 };
 
 console.log('Running Browserify to create bundle...');

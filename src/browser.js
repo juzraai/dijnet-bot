@@ -19,10 +19,16 @@ class Browser {
 	 * @returns {got.GotPromise<got.Response>} Response
 	 */
 	async request(url, options) {
-		return got(url, Object.assign({
-			cookieJar: this.cookieJar,
-			dnsCache: new Map(),
-		}, options));
+		return got(
+			url,
+			Object.assign(
+				{
+					cookieJar: this.cookieJar,
+					dnsCache: new Map(),
+				},
+				options,
+			),
+		);
 	}
 
 	/**
@@ -33,7 +39,10 @@ class Browser {
 	 * @returns {got.GotPromise<got.Response>} Response
 	 */
 	async navigate(url, options) {
-		this.lastNavigationResponse = await this.request(url, Object.assign({ method: 'GET' }, options));
+		this.lastNavigationResponse = await this.request(
+			url,
+			Object.assign({ method: 'GET' }, options),
+		);
 		return this.lastNavigationResponse;
 	}
 
@@ -45,7 +54,10 @@ class Browser {
 	 * @returns {got.GotPromise<got.Response>} Response
 	 */
 	async submit(url, options) {
-		this.lastNavigationResponse = await this.request(url, Object.assign({ method: 'POST' }, options));
+		this.lastNavigationResponse = await this.request(
+			url,
+			Object.assign({ method: 'POST' }, options),
+		);
 		return this.lastNavigationResponse;
 	}
 }

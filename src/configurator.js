@@ -97,13 +97,13 @@ async function loadPrompts(config) {
 		{
 			type: 'text',
 			name: 'user',
-			message: 'Díjnet felhasználóneved'
+			message: 'Díjnet felhasználóneved',
 		},
 		{
 			type: 'password',
 			name: 'pass',
-			message: 'Díjnet jelszavad'
-		}
+			message: 'Díjnet jelszavad',
+		},
 	];
 
 	console.log('');

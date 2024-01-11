@@ -48,12 +48,18 @@ class DijnetBrowser extends Browser {
 		await waitMs(this.config.sleep * 1000);
 
 		this.logger.verbose(`${options.method} ${this.baseUrl}${dijnetPath}`);
-		const headers = Object.assign({
-			'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-			'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7'
-		}, options.headers || {});
+		const headers = Object.assign(
+			{
+				accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+				'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7',
+			},
+			options.headers || {},
+		);
 
-		return super.request(dijnetPath, Object.assign({ prefixUrl: this.baseUrl, encoding: 'latin1' }, options, { headers }));
+		return super.request(
+			dijnetPath,
+			Object.assign({ prefixUrl: this.baseUrl, encoding: 'latin1' }, options, { headers }),
+		);
 	}
 
 	/**
@@ -114,7 +120,10 @@ class DijnetBrowser extends Browser {
 	saveTempFile(dijnetPath) {
 		if (this.config.tempDir) {
 			const now = new Date();
-			const ts = (now.toISOString().slice(0, 10) + ' ' + now.toLocaleTimeString()).replace(/\D/g, '');
+			const ts = (now.toISOString().slice(0, 10) + ' ' + now.toLocaleTimeString()).replace(
+				/\D/g,
+				'',
+			);
 			const nu = dijnetPath.replace(/.*dijnet.*?\//, '').replace(/[^A-Za-z0-9]+/g, '_');
 			const fn = path.join(this.config.tempDir, `${ts}_${nu}.html`);
 			this.logger.verbose(`HTML fájl kiírása: ${fn}`);

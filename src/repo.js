@@ -46,7 +46,11 @@ class Repo {
 	 * @returns {string} Download directory for given bill
 	 */
 	directoryFor(bill) {
-		const d = path.join(this.config.outputDir, `${bill.serviceProvider} - ${bill.billIssuerId}`, bill.dateOfIssue);
+		const d = path.join(
+			this.config.outputDir,
+			`${bill.serviceProvider} - ${bill.billIssuerId}`,
+			bill.dateOfIssue,
+		);
 		mkdirp(d);
 		return d;
 	}

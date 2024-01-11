@@ -30,7 +30,15 @@ class Logger {
 	 * @returns {Logger} This object
 	 */
 	init() {
-		this.log(`${kleur.green('Díjnet')}${kleur.blue('Bot')} v${packageInfo.version} ${kleur.reset('by juzraai | https://github.com/juzraai/dijnet-bot')}\n`, kleur.white, true, true, false);
+		this.log(
+			`${kleur.green('Díjnet')}${kleur.blue('Bot')} v${packageInfo.version} ${kleur.reset(
+				'by juzraai | https://github.com/juzraai/dijnet-bot',
+			)}\n`,
+			kleur.white,
+			true,
+			true,
+			false,
+		);
 		return this;
 	}
 
@@ -53,9 +61,10 @@ class Logger {
 		let s = message;
 
 		if (this.config.verbose) {
-			s = s.trim()
+			s = s
+				.trim()
 				.split('\n')
-				.filter(line => line.trim().length > 0)
+				.filter((line) => line.trim().length > 0)
 				.join('\n');
 		}
 
@@ -70,7 +79,12 @@ class Logger {
 
 		if (this.config.verbose || !this.config.tty) {
 			const ts = getTimestamp();
-			console.log(s.split('\n').map(line => kleur.reset().gray(`${ts} | `) + line).join('\n'));
+			console.log(
+				s
+					.split('\n')
+					.map((line) => kleur.reset().gray(`${ts} | `) + line)
+					.join('\n'),
+			);
 			return;
 		}
 
@@ -97,11 +111,19 @@ class Logger {
 	error(error) {
 		this.log(error.message || error, kleur.red, true, true, true);
 		if (error.stack) {
-			const s = '\nHa biztos vagy abban, hogy helyesen konfiguráltad a Díjnet Bot-ot, akkor a hiba a programban lehet.\nKérlek, az alábbi linken nyiss egy új issue-t, másold be a hiba részleteit, és írd le röviden, milyen szituációban jelentkezett a hiba!\n\n-->  https://github.com/juzraai/dijnet-bot/issues\n\n';
+			const s =
+				'\nHa biztos vagy abban, hogy helyesen konfiguráltad a Díjnet Bot-ot, akkor a hiba a programban lehet.\nKérlek, az alábbi linken nyiss egy új issue-t, másold be a hiba részleteit, és írd le röviden, milyen szituációban jelentkezett a hiba!\n\n-->  https://github.com/juzraai/dijnet-bot/issues\n\n';
 			this.log(s, kleur.red, true, false);
 			try {
-				fs.writeFileSync(this.config.errorFile, `${getTimestamp()}: ${error.message}\n${error.stack}`);
-				this.log(`A hiba részleteit megtalálod a(z) ${this.config.errorFile} fájlban.`, kleur.red, true);
+				fs.writeFileSync(
+					this.config.errorFile,
+					`${getTimestamp()}: ${error.message}\n${error.stack}`,
+				);
+				this.log(
+					`A hiba részleteit megtalálod a(z) ${this.config.errorFile} fájlban.`,
+					kleur.red,
+					true,
+				);
 			} catch (_) {
 				this.log('A hiba részletei:', kleur.red, true, false);
 				this.log(error.stack, kleur.red, false, false);

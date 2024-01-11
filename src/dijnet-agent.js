@@ -41,7 +41,8 @@ class DijnetAgent {
 	async submitBillSearchForm() {
 		this.checkIfLoggedIn();
 		this.checkBillSearchForm();
-		const body = 'vfw_form=szamla_search_submit&vfw_coll=szamla_search_params&regszolgid=&szlaszolgid=&datumtol=&datumig=';
+		const body =
+			'vfw_form=szamla_search_submit&vfw_coll=szamla_search_params&regszolgid=&szlaszolgid=&datumtol=&datumig=';
 		await this.browser.submit('/control/szamla_search_submit', body);
 	}
 
@@ -53,7 +54,9 @@ class DijnetAgent {
 	async openBill(rowId) {
 		this.checkIfLoggedIn();
 		this.checkBillSelectCode();
-		await this.browser.navigate(`/control/szamla_select?vfw_coll=szamla_list&vfw_rowid=${rowId}`);
+		await this.browser.navigate(
+			`/control/szamla_select?vfw_coll=szamla_list&vfw_rowid=${rowId}`,
+		);
 	}
 
 	/**
@@ -74,24 +77,39 @@ class DijnetAgent {
 	}
 
 	checkIfLoggedIn() {
-		this.check(this.config.user.toLowerCase(), 'Felhasználónév nem szerepel az oldalon / nem vagyunk bejelentkezve');
+		this.check(
+			this.config.user.toLowerCase(),
+			'Felhasználónév nem szerepel az oldalon / nem vagyunk bejelentkezve',
+		);
 		this.checkBillSearchLink();
 	}
 
 	checkBillSearchLink() {
-		this.check('href="/ekonto/control/szamla_search"', 'Számlakereső link nem található / nem vagyunk bejelentkezve');
+		this.check(
+			'href="/ekonto/control/szamla_search"',
+			'Számlakereső link nem található / nem vagyunk bejelentkezve',
+		);
 	}
 
 	checkBillSearchForm() {
-		this.check('action="szamla_search_submit"', 'Számlakereső form nem található / nem a számlakereső oldalon vagyunk');
+		this.check(
+			'action="szamla_search_submit"',
+			'Számlakereső form nem található / nem a számlakereső oldalon vagyunk',
+		);
 	}
 
 	checkBillSelectCode() {
-		this.check('clickSzamla(\'szamla_select\'', 'Számla kiválasztás kódja nem található / nem a keresési találatok oldalán vagyunk');
+		this.check(
+			"clickSzamla('szamla_select'",
+			'Számla kiválasztás kódja nem található / nem a keresési találatok oldalán vagyunk',
+		);
 	}
 
 	checkBillDownloadsLink() {
-		this.check('href="/ekonto/control/szamla_letolt"', 'Számla letöltés link nem található / nem egy megnyitott számla oldalán vagyunk');
+		this.check(
+			'href="/ekonto/control/szamla_letolt"',
+			'Számla letöltés link nem található / nem egy megnyitott számla oldalán vagyunk',
+		);
 	}
 
 	check(requiredContent, errorMessage) {
