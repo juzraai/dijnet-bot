@@ -57,8 +57,7 @@ export default class DijnetBrowser extends Browser {
 			...(options.headers || {}),
 		};
 
-		return super.request(dijnetPath, {
-			prefixUrl: this.baseUrl,
+		return super.request(`${this.baseUrl}${dijnetPath}`, {
 			encoding: 'latin1',
 			...options,
 			headers,

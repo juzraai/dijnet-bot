@@ -21,7 +21,6 @@ export default class Browser {
 	async request(url, options) {
 		return got(url, {
 			cookieJar: this.cookieJar,
-			dnsCache: new Map(),
 			...options,
 		});
 	}
