@@ -1,7 +1,7 @@
-const cheerio = require('cheerio');
-const deburr = require('lodash.deburr');
-const Bill = require('./bill');
-const BillFile = require('./bill-file');
+import cheerio from 'cheerio';
+import deburr from 'lodash.deburr';
+import Bill from './bill';
+import BillFile from './bill-file';
 
 /**
  * @param {string} body Response body, it should be the HTML code of a bill list page

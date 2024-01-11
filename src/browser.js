@@ -1,5 +1,5 @@
-const got = require('got');
-const { CookieJar } = require('tough-cookie');
+import got from 'got';
+import { CookieJar } from 'tough-cookie';
 
 /**
  * Wrapper around `got` HTTP client. Adds a cookie jar and stores the last successful response.

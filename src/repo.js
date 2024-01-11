@@ -1,9 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const mkdirp = require('mkdirp').sync;
-const Bill = require('./bill'); // eslint-disable-line no-unused-vars
-const Config = require('./config');
-const Logger = require('./logger');
+import fs from 'fs';
+import path from 'path';
+import mkdirp from 'mkdirp';
+import Config from './config';
+import Logger from './logger';
+
+/** @typedef {import('./bill')} Bill */
 
 /**
  * Utility for output directory management and maintaining completed bills.

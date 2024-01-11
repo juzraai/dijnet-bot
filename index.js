@@ -1,20 +1,21 @@
 #!/usr/bin/env node
-const SingleInstance = require('single-instance');
-const Logger = require('./src/logger');
-const { start } = require('./src/main');
+import SingleInstance from 'single-instance';
+import Logger from './src/logger';
+import { start } from './src/main';
 
-new SingleInstance('dijnet-bot')
-	.lock()
-	.then(start)
-	.catch((error) => {
-		try {
-			new Logger().error(
-				error.stack ? error : 'A Díjnet bot már fut, és nem futtatható több példányban.',
-			);
-		} catch (error2) {
-			// in case Logger is also dead
-			console.log(error2);
-		}
+try {
+	const singleInstance = new SingleInstance('dijnet-bot');
+	await singleInstance.lock();
+	start();
+} catch (error) {
+	try {
+		new Logger().error(
+			error.stack ? error : 'A Díjnet bot már fut, és nem futtatható több példányban.',
+		);
+	} catch (error2) {
+		// in case Logger is also dead
+		console.log(error2);
+	}
 
-		process.exit(1);
-	});
+	process.exit(1);
+}

@@ -6,10 +6,10 @@
 	Call this script via `npm run bundle`.
 */
 
-const fs = require('fs');
-const browserify = require('browserify');
-const banner = require('browserify-banner');
-const terser = require('terser');
+import fs from 'fs';
+import browserify from 'browserify';
+import banner from 'browserify-banner';
+import terser from 'terser';
 
 const INPUT_FILE = './index.js';
 const OUTPUT_FILE = './dijnet-bot.js';
@@ -39,6 +39,7 @@ browserify(INPUT_FILE, browserifyOptions)
 		if (error) {
 			throw error;
 		}
+
 		const bundle = buffer.toString();
 		console.log(`Bundle size:   ${Math.floor(bundle.length / 1024 / 10) * 10} KB`);
 

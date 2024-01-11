@@ -1,6 +1,6 @@
-const Config = require('./config');
-const DijnetBrowser = require('./dijnet-browser');
-const Logger = require('./logger');
+import Config from './config';
+import DijnetBrowser from './dijnet-browser';
+import Logger from './logger';
 
 /**
  * Provides an API to Díjnet's functions / links. Knows which page depends on

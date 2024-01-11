@@ -1,9 +1,10 @@
-const configurator = require('./configurator');
-const DijnetAgent = require('./dijnet-agent');
-const DijnetBrowser = require('./dijnet-browser');
-const parser = require('./dijnet-parser');
-const Logger = require('./logger');
-const Repo = require('./repo');
+/* eslint-disable no-await-in-loop */
+import configurator from './configurator';
+import DijnetAgent from './dijnet-agent';
+import DijnetBrowser from './dijnet-browser';
+import parser from './dijnet-parser';
+import Logger from './logger';
+import Repo from './repo';
 
 /**
  * Díjnet Bot itself. Loads configuration, initializes components, logs in to

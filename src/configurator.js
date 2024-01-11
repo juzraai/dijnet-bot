@@ -1,7 +1,7 @@
-const dotenv = require('dotenv');
-const prompts = require('prompts');
-const cli = require('./cli');
-const Config = require('./config');
+import dotenv from 'dotenv';
+import prompts from 'prompts';
+import cli from './cli';
+import Config from './config';
 
 /**
  * Fetches configuration from environment variables (.env), command line

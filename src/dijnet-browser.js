@@ -1,10 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const waitMs = require('util').promisify(setTimeout);
-const mkdirp = require('mkdirp').sync;
-const Browser = require('./browser');
-const Config = require('./config');
-const Logger = require('./logger');
+import fs from 'fs';
+import path from 'path';
+import { promisify } from 'util';
+import * as _mkdirp from 'mkdirp';
+import Browser from './browser';
+import Config from './config';
+import Logger from './logger';
+
+const mkdirp = _mkdirp.sync;
+const waitMs = promisify(setTimeout);
 
 /**
  * Extension to `Browser`. Adds Díjnet specific base URL and HTTP headers, and

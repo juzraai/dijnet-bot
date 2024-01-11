@@ -1,7 +1,7 @@
-const fs = require('fs');
-const kleur = require('kleur');
-const packageInfo = require('../package.json');
-const Config = require('./config');
+import fs from 'fs';
+import kleur from 'kleur';
+import { version } from '../package.json';
+import Config from './config';
 
 function getTimestamp() {
 	const now = new Date();
@@ -31,7 +31,7 @@ class Logger {
 	 */
 	init() {
 		this.log(
-			`${kleur.green('Díjnet')}${kleur.blue('Bot')} v${packageInfo.version} ${kleur.reset(
+			`${kleur.green('Díjnet')}${kleur.blue('Bot')} v${version} ${kleur.reset(
 				'by juzraai | https://github.com/juzraai/dijnet-bot',
 			)}\n`,
 			kleur.white,

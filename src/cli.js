@@ -1,5 +1,6 @@
-const commander = require('commander');
-const Config = require('./config'); // eslint-disable-line no-unused-vars
+import commander from 'commander';
+
+/** @typedef {import('./config')} Config */
 
 /**
  * Creates a Commander.js program definition.
