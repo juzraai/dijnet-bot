@@ -8,7 +8,7 @@ import commander from 'commander';
  * @param {Config} defaultConfig Configuration to be used to print default values
  * @returns {commander.Command} Commander.js program definition
  */
-function getCli(defaultConfig) {
+export function getCli(defaultConfig) {
 	const program = new commander.Command();
 	program
 		.name('dijnet-bot')
@@ -49,5 +49,3 @@ function getCli(defaultConfig) {
 		});
 	return program;
 }
-
-module.exports = { getCli };

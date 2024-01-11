@@ -6,7 +6,7 @@ import Logger from './logger';
  * Provides an API to Díjnet's functions / links. Knows which page depends on
  * which another page, throws errors if functions called in wrong order.
  */
-class DijnetAgent {
+export default class DijnetAgent {
 	/**
 	 * @param {Config} config Configuration
 	 * @param {Logger} logger Logger
@@ -118,5 +118,3 @@ class DijnetAgent {
 		}
 	}
 }
-
-module.exports = DijnetAgent;

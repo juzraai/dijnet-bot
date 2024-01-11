@@ -4,7 +4,7 @@ import { CookieJar } from 'tough-cookie';
 /**
  * Wrapper around `got` HTTP client. Adds a cookie jar and stores the last successful response.
  */
-class Browser {
+export default class Browser {
 	constructor() {
 		this.cookieJar = new CookieJar();
 		/** @type {got.Response} */
@@ -50,5 +50,3 @@ class Browser {
 		return this.lastNavigationResponse;
 	}
 }
-
-module.exports = Browser;

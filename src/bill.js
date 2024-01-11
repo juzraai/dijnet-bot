@@ -1,7 +1,7 @@
 /**
  * Represents bill metadata.
  */
-class Bill {
+export default class Bill {
 	/**
 	 * @param {Bill} data Bill metadata available on Díjnet
 	 * @param {string} data.rowId Row ID in search results
@@ -27,5 +27,3 @@ class Bill {
 		this.status = data.status;
 	}
 }
-
-module.exports = Bill;

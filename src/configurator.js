@@ -10,7 +10,7 @@ import Config from './config';
  *
  * @returns {Config} Configuration
  */
-async function getConfig() {
+export async function getConfig() {
 	const config = new Config(); // default configuration
 	const program = cli.getCli(config);
 
@@ -115,5 +115,3 @@ async function loadPrompts(config) {
 	config.pass = response.pass;
 	return config;
 }
-
-module.exports = { getConfig };

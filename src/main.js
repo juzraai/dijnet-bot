@@ -11,7 +11,7 @@ import Repo from './repo';
  * Díjnet, searches for bills, iterates over them and downloads every file it
  * founds. Maintains a list of previously completed bills and skips them.
  */
-async function start() {
+export async function start() {
 	const config = await configurator.getConfig();
 	const logger = new Logger(config).init();
 	const repo = new Repo(config, logger).init();
@@ -67,5 +67,3 @@ async function start() {
 	logger.success(`${billsDownloaded} db új számla lementve!`);
 	process.exit(0);
 }
-
-module.exports = { start };

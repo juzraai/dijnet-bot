@@ -13,7 +13,7 @@ const waitMs = promisify(setTimeout);
  * Extension to `Browser`. Adds Díjnet specific base URL and HTTP headers, and
  * is able to write out HTML files and cookies for further investigation.
  */
-class DijnetBrowser extends Browser {
+export default class DijnetBrowser extends Browser {
 	/**
 	 * @param {Config} config Configuration
 	 * @param {Logger} logger Logger
@@ -139,5 +139,3 @@ class DijnetBrowser extends Browser {
 		}
 	}
 }
-
-module.exports = DijnetBrowser;

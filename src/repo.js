@@ -9,7 +9,7 @@ import Logger from './logger';
 /**
  * Utility for output directory management and maintaining completed bills.
  */
-class Repo {
+export default class Repo {
 	/**
 	 * @param {Config} config Configuration
 	 * @param {Logger} logger Logger
@@ -92,5 +92,3 @@ class Repo {
 		return bill.billId.replace(/[\r\n]+/g, ' ').trim();
 	}
 }
-
-module.exports = Repo;

@@ -16,7 +16,7 @@ function getTimestamp() {
  * standard outputs (e.g. redirects), verbose mode will be activated. Verbose
  * mode prints out every log message with a timestamp prefix.
  */
-class Logger {
+export default class Logger {
 	/**
 	 * @param {Config} config Configuration
 	 */
@@ -165,5 +165,3 @@ class Logger {
 		}
 	}
 }
-
-module.exports = Logger;

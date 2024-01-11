@@ -1,7 +1,7 @@
 /**
  * Represents Dijnet Bot configuration.
  */
-class Config {
+export default class Config {
 	/**
 	 * @param {Config} data Configuration
 	 * @param {string} doneFile Name of the file (relative to outputDir) where completed bills will be listed
@@ -29,5 +29,3 @@ class Config {
 		this.verbose = data.verbose;
 	}
 }
-
-module.exports = Config;

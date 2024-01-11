@@ -7,7 +7,7 @@ import BillFile from './bill-file';
  * @param {string} body Response body, it should be the HTML code of a bill list page
  * @returns {Bill[]} Bills' metadata
  */
-function parseBillSearchResults(body) {
+export function parseBillSearchResults(body) {
 	const $ = cheerio.load(body, { normalizeWhitespace: true });
 	const thIds = $('table thead th')
 		.toArray()
@@ -60,7 +60,7 @@ function parseBillSearchResults(body) {
  * @param {string} body Response body, it should be the HTML code of a bill's downloads page
  * @returns {BillFile[]} Downloadable files' metadata
  */
-function parseBillDownloads(body) {
+export function parseBillDownloads(body) {
 	const $ = cheerio.load(body, { normalizeWhitespace: true });
 	return $('.panel_bs a[href*=_]')
 		.toArray()
@@ -72,14 +72,8 @@ function parseBillDownloads(body) {
  * @param {string} s String to be normalized
  * @returns {string} Normalizes input string by removing accents (á -> a), and removing non-alphanumeric characters.
  */
-function normalize(s) {
+export function normalize(s) {
 	return deburr(s)
 		.replace(/[^a-z0-9\-_]+/gi, ' ')
 		.trim();
 }
-
-module.exports = {
-	normalize,
-	parseBillSearchResults,
-	parseBillDownloads,
-};
