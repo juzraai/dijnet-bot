@@ -72,6 +72,7 @@ class Logger {
 			if (bold) {
 				s = kleur.bold(s);
 			}
+
 			if (colorFunc) {
 				s = colorFunc(s);
 			}
@@ -93,6 +94,7 @@ class Logger {
 		if (closeLineBefore) {
 			process.stdout.write('\n');
 		}
+
 		process.stdout.clearLine();
 		process.stdout.cursorTo(0);
 		process.stdout.write(s);

@@ -15,5 +15,6 @@ new SingleInstance('dijnet-bot')
 			// in case Logger is also dead
 			console.log(error2);
 		}
+
 		process.exit(1);
 	});

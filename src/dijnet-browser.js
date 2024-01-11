@@ -33,6 +33,7 @@ class DijnetBrowser extends Browser {
 			this.logger.verbose(`Könyvtár létrehozása: ${this.config.tempDir}`);
 			mkdirp(this.config.tempDir);
 		}
+
 		return this;
 	}
 
@@ -48,18 +49,18 @@ class DijnetBrowser extends Browser {
 		await waitMs(this.config.sleep * 1000);
 
 		this.logger.verbose(`${options.method} ${this.baseUrl}${dijnetPath}`);
-		const headers = Object.assign(
-			{
-				accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-				'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7',
-			},
-			options.headers || {},
-		);
+		const headers = {
+			accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+			'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7',
+			...(options.headers || {}),
+		};
 
-		return super.request(
-			dijnetPath,
-			Object.assign({ prefixUrl: this.baseUrl, encoding: 'latin1' }, options, { headers }),
-		);
+		return super.request(dijnetPath, {
+			prefixUrl: this.baseUrl,
+			encoding: 'latin1',
+			...options,
+			headers,
+		});
 	}
 
 	/**

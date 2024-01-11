@@ -34,6 +34,7 @@ class Repo {
 		if (fs.existsSync(this.doneFile)) {
 			this.crawledBillIds = fs.readFileSync(this.doneFile, 'utf8').trim().split('\n');
 		}
+
 		this.logger.verbose(`${this.crawledBillIds.length} db számla van a kimeneti mappában`);
 
 		return this;

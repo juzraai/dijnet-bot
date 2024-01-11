@@ -28,6 +28,7 @@ function parseBillSearchResults(body) {
 		if (i === -1) {
 			throw new Error(`Nem találom a következő oszlopot: ${id} (talált oszlopok: ${thIds})`);
 		}
+
 		return i;
 	}
 

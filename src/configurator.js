@@ -19,6 +19,7 @@ async function getConfig() {
 	if (!config.user || !config.pass) {
 		await loadPrompts(config);
 	}
+
 	if (!config.user || !config.pass) {
 		program.help();
 	}
@@ -85,6 +86,7 @@ function loadArgs(program, config) {
 		config.quiet = true;
 		config.verbose = false;
 	}
+
 	return config;
 }
 

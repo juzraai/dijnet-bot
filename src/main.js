@@ -54,6 +54,7 @@ async function start() {
 				allFilesDownloaded = false;
 			}
 		}
+
 		if (allFilesDownloaded) {
 			billsDownloaded++;
 			repo.markAsDone(bill);
@@ -61,6 +62,7 @@ async function start() {
 
 		await agent.openBillList();
 	}
+
 	logger.success(`${billsDownloaded} db új számla lementve!`);
 	process.exit(0);
 }
