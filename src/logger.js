@@ -117,10 +117,13 @@ export default class Logger {
 				'\nHa biztos vagy abban, hogy helyesen konfiguráltad a Díjnet Bot-ot, akkor a hiba a programban lehet.\nKérlek, az alábbi linken nyiss egy új issue-t, másold be a hiba részleteit, és írd le röviden, milyen szituációban jelentkezett a hiba!\n\n-->  https://github.com/juzraai/dijnet-bot/issues\n\n';
 			this.log(s, kleur.red, true, false);
 			try {
-				fs.writeFileSync(
-					this.config.errorFile,
-					`${getTimestamp()}: ${error.message}\n${error.stack}`,
-				);
+				const lines = [
+					`Package: ${packageJson.name} v${packageJson.version}`,
+					`Platform: ${process.arch} ${process.platform} ${process.title} ${process.version}`,
+					`Timestamp: ${getTimestamp()}`,
+					error.stack || error,
+				];
+				fs.writeFileSync(this.config.errorFile, lines.join('\n'));
 				this.log(
 					`A hiba részleteit megtalálod a(z) ${this.config.errorFile} fájlban.`,
 					kleur.red,

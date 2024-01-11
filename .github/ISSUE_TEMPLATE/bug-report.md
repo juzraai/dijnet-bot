@@ -21,7 +21,7 @@ assignees: juzraai
 Ide másold be kérlek.
 ```
 
-**Rendszerinformációk**
+**(Ha nincs error.log fájl) Rendszerinformációk**
 
 -   Operációs rendszer: Windows? Linux?
 -   Node verzió (`node -v`): ?
