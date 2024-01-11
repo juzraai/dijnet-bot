@@ -1,7 +1,7 @@
 import cheerio from 'cheerio';
 import deburr from 'lodash.deburr';
-import Bill from './bill';
-import BillFile from './bill-file';
+import Bill from './bill.js';
+import BillFile from './bill-file.js';
 
 /**
  * @param {string} body Response body, it should be the HTML code of a bill list page

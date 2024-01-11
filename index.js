@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import SingleInstance from 'single-instance';
-import Logger from './src/logger';
-import { start } from './src/main';
+import Logger from './src/logger.js';
+import { start } from './src/main.js';
 
 try {
 	const singleInstance = new SingleInstance('dijnet-bot');

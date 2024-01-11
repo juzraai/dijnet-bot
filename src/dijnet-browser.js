@@ -1,12 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import { promisify } from 'util';
-import * as _mkdirp from 'mkdirp';
-import Browser from './browser';
-import Config from './config';
-import Logger from './logger';
+import mkdirp from 'mkdirp';
+import Browser from './browser.js';
+import Config from './config.js';
+import Logger from './logger.js';
 
-const mkdirp = _mkdirp.sync;
 const waitMs = promisify(setTimeout);
 
 /**
@@ -34,7 +33,7 @@ export default class DijnetBrowser extends Browser {
 	init() {
 		if (this.config.tempDir) {
 			this.logger.verbose(`Könyvtár létrehozása: ${this.config.tempDir}`);
-			mkdirp(this.config.tempDir);
+			mkdirp.sync(this.config.tempDir);
 		}
 
 		return this;

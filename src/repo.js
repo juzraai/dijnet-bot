@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import mkdirp from 'mkdirp';
-import Config from './config';
-import Logger from './logger';
+import Config from './config.js';
+import Logger from './logger.js';
 
 /** @typedef {import('./bill')} Bill */
 

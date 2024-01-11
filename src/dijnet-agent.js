@@ -1,6 +1,6 @@
-import Config from './config';
-import DijnetBrowser from './dijnet-browser';
-import Logger from './logger';
+import Config from './config.js';
+import DijnetBrowser from './dijnet-browser.js';
+import Logger from './logger.js';
 
 /**
  * Provides an API to Díjnet's functions / links. Knows which page depends on

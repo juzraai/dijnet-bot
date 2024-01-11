@@ -1,10 +1,10 @@
 /* eslint-disable no-await-in-loop */
-import configurator from './configurator';
-import DijnetAgent from './dijnet-agent';
-import DijnetBrowser from './dijnet-browser';
-import parser from './dijnet-parser';
-import Logger from './logger';
-import Repo from './repo';
+import { getConfig } from './configurator.js';
+import DijnetAgent from './dijnet-agent.js';
+import DijnetBrowser from './dijnet-browser.js';
+import { parseBillDownloads, parseBillSearchResults } from './dijnet-parser.js';
+import Logger from './logger.js';
+import Repo from './repo.js';
 
 /**
  * Díjnet Bot itself. Loads configuration, initializes components, logs in to
@@ -12,7 +12,7 @@ import Repo from './repo';
  * founds. Maintains a list of previously completed bills and skips them.
  */
 export async function start() {
-	const config = await configurator.getConfig();
+	const config = await getConfig();
 	const logger = new Logger(config).init();
 	const repo = new Repo(config, logger).init();
 	const browser = new DijnetBrowser(config, logger).init();
@@ -25,7 +25,7 @@ export async function start() {
 	logger.info('Számlák keresése...');
 	await agent.openBillSearch();
 	await agent.submitBillSearchForm();
-	let bills = parser.parseBillSearchResults(agent.browser.lastNavigationResponse.body);
+	let bills = parseBillSearchResults(agent.browser.lastNavigationResponse.body);
 	const allBillsCount = bills.length;
 	bills = bills.filter(repo.isNew.bind(repo));
 	logger.success(
@@ -44,7 +44,7 @@ export async function start() {
 		await agent.openBill(bill.rowId);
 		await agent.openBillDownloads();
 
-		const files = parser.parseBillDownloads(agent.browser.lastNavigationResponse.body);
+		const files = parseBillDownloads(agent.browser.lastNavigationResponse.body);
 		let allFilesDownloaded = true;
 		for (let j = 0; j < files.length; j++) {
 			const file = files[j];

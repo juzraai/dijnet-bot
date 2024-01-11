@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import prompts from 'prompts';
-import cli from './cli';
-import Config from './config';
+import { getCli } from './cli.js';
+import Config from './config.js';
 
 /**
  * Fetches configuration from environment variables (.env), command line
@@ -12,7 +12,7 @@ import Config from './config';
  */
 export async function getConfig() {
 	const config = new Config(); // default configuration
-	const program = cli.getCli(config);
+	const program = getCli(config);
 
 	loadEnv(config);
 	loadArgs(program, config);
