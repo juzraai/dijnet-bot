@@ -85,7 +85,7 @@ A program a kimeneti mappán belül a `kesz.txt` fájlba beírja azon számlák 
 
 A **Díjnet** az ingyenes szolgáltatása keretében **csak bizonyos ideig őrzi meg** a számlákat. Ha később is el akarjuk érni a fájlokat, akkor
 
--   vagy [fizetünk a **SzámlaPlusz** funkcióért](https://www.dijnet.hu/ekonto/docs/hu/szamlaplusz_tajekoztato.pdf) (évi ~1 000 Ft),
+-   vagy [fizetünk a **SzámlaPlusz** funkcióért](https://www.dijnet.hu/docs/hu/szamlaplusz_tajekoztato.pdf) (évi ~1 500 Ft),
 -   vagy rendszeresen **lementjük kézzel**, ami fáradtságos munka lehet.
 
 A **Díjnet Bot** az utóbbi megoldás **automatizálására szolgál**, vagyis gyakorlatilag helyettünk kattintgat végig a számlákon és a **Díjnet** által biztosított letöltési linkeken.
