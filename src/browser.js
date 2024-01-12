@@ -1,10 +1,10 @@
-const got = require('got');
-const { CookieJar } = require('tough-cookie');
+import got from 'got';
+import { CookieJar } from 'tough-cookie';
 
 /**
  * Wrapper around `got` HTTP client. Adds a cookie jar and stores the last successful response.
  */
-class Browser {
+export default class Browser {
 	constructor() {
 		this.cookieJar = new CookieJar();
 		/** @type {got.Response} */
@@ -19,10 +19,10 @@ class Browser {
 	 * @returns {got.GotPromise<got.Response>} Response
 	 */
 	async request(url, options) {
-		return got(url, Object.assign({
+		return got(url, {
 			cookieJar: this.cookieJar,
-			dnsCache: new Map(),
-		}, options));
+			...options,
+		});
 	}
 
 	/**
@@ -33,7 +33,7 @@ class Browser {
 	 * @returns {got.GotPromise<got.Response>} Response
 	 */
 	async navigate(url, options) {
-		this.lastNavigationResponse = await this.request(url, Object.assign({ method: 'GET' }, options));
+		this.lastNavigationResponse = await this.request(url, { method: 'GET', ...options });
 		return this.lastNavigationResponse;
 	}
 
@@ -45,9 +45,7 @@ class Browser {
 	 * @returns {got.GotPromise<got.Response>} Response
 	 */
 	async submit(url, options) {
-		this.lastNavigationResponse = await this.request(url, Object.assign({ method: 'POST' }, options));
+		this.lastNavigationResponse = await this.request(url, { method: 'POST', ...options });
 		return this.lastNavigationResponse;
 	}
 }
-
-module.exports = Browser;

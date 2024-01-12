@@ -1,14 +1,15 @@
-const fs = require('fs');
-const path = require('path');
-const mkdirp = require('mkdirp').sync;
-const Bill = require('./bill'); // eslint-disable-line no-unused-vars
-const Config = require('./config');
-const Logger = require('./logger');
+import fs from 'fs';
+import path from 'path';
+import { sync as mkdirp } from 'mkdirp';
+import Config from './config.js';
+import Logger from './logger.js';
+
+/** @typedef {import('./bill')} Bill */
 
 /**
  * Utility for output directory management and maintaining completed bills.
  */
-class Repo {
+export default class Repo {
 	/**
 	 * @param {Config} config Configuration
 	 * @param {Logger} logger Logger
@@ -34,6 +35,7 @@ class Repo {
 		if (fs.existsSync(this.doneFile)) {
 			this.crawledBillIds = fs.readFileSync(this.doneFile, 'utf8').trim().split('\n');
 		}
+
 		this.logger.verbose(`${this.crawledBillIds.length} db számla van a kimeneti mappában`);
 
 		return this;
@@ -46,7 +48,11 @@ class Repo {
 	 * @returns {string} Download directory for given bill
 	 */
 	directoryFor(bill) {
-		const d = path.join(this.config.outputDir, `${bill.serviceProvider} - ${bill.billIssuerId}`, bill.dateOfIssue);
+		const d = path.join(
+			this.config.outputDir,
+			`${bill.serviceProvider} - ${bill.billIssuerId}`,
+			bill.dateOfIssue,
+		);
 		mkdirp(d);
 		return d;
 	}
@@ -86,5 +92,3 @@ class Repo {
 		return bill.billId.replace(/[\r\n]+/g, ' ').trim();
 	}
 }
-
-module.exports = Repo;

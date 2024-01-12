@@ -1,16 +1,18 @@
-const fs = require('fs');
-const path = require('path');
-const waitMs = require('util').promisify(setTimeout);
-const mkdirp = require('mkdirp').sync;
-const Browser = require('./browser');
-const Config = require('./config');
-const Logger = require('./logger');
+import fs from 'fs';
+import path from 'path';
+import { promisify } from 'util';
+import { sync as mkdirp } from 'mkdirp';
+import Browser from './browser.js';
+import Config from './config.js';
+import Logger from './logger.js';
+
+const waitMs = promisify(setTimeout);
 
 /**
  * Extension to `Browser`. Adds Díjnet specific base URL and HTTP headers, and
  * is able to write out HTML files and cookies for further investigation.
  */
-class DijnetBrowser extends Browser {
+export default class DijnetBrowser extends Browser {
 	/**
 	 * @param {Config} config Configuration
 	 * @param {Logger} logger Logger
@@ -33,6 +35,7 @@ class DijnetBrowser extends Browser {
 			this.logger.verbose(`Könyvtár létrehozása: ${this.config.tempDir}`);
 			mkdirp(this.config.tempDir);
 		}
+
 		return this;
 	}
 
@@ -48,12 +51,17 @@ class DijnetBrowser extends Browser {
 		await waitMs(this.config.sleep * 1000);
 
 		this.logger.verbose(`${options.method} ${this.baseUrl}${dijnetPath}`);
-		const headers = Object.assign({
-			'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-			'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7'
-		}, options.headers || {});
+		const headers = {
+			accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+			'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7',
+			...(options.headers || {}),
+		};
 
-		return super.request(dijnetPath, Object.assign({ prefixUrl: this.baseUrl, encoding: 'latin1' }, options, { headers }));
+		return super.request(`${this.baseUrl}${dijnetPath}`, {
+			encoding: 'latin1',
+			...options,
+			headers,
+		});
 	}
 
 	/**
@@ -114,7 +122,10 @@ class DijnetBrowser extends Browser {
 	saveTempFile(dijnetPath) {
 		if (this.config.tempDir) {
 			const now = new Date();
-			const ts = (now.toISOString().slice(0, 10) + ' ' + now.toLocaleTimeString()).replace(/\D/g, '');
+			const ts = (now.toISOString().slice(0, 10) + ' ' + now.toLocaleTimeString()).replace(
+				/\D/g,
+				'',
+			);
 			const nu = dijnetPath.replace(/.*dijnet.*?\//, '').replace(/[^A-Za-z0-9]+/g, '_');
 			const fn = path.join(this.config.tempDir, `${ts}_${nu}.html`);
 			this.logger.verbose(`HTML fájl kiírása: ${fn}`);
@@ -126,5 +137,3 @@ class DijnetBrowser extends Browser {
 		}
 	}
 }
-
-module.exports = DijnetBrowser;

@@ -1,29 +1,21 @@
 # <div align="center"><img src="img/header.svg" width="400" title="Díjnet Bot" alt="Díjnet Bot - Az összes számlád még egy helyen"></div>
 
-
-
-A **Díjnet Bot** lementi az **összes [Díjnet](https://www.dijnet.hu/)-en tárolt számládat,** így azok immáron még egy helyen, *Nálad is* meglesznek.
-
-
+A **Díjnet Bot** lementi az **összes [Díjnet](https://www.dijnet.hu/)-en tárolt számládat,** így azok immáron még egy helyen, _Nálad is_ meglesznek.
 
 ![](img/scrs.gif)
 
-
-
 ## Funkciók
 
-- **Mindent visz:** az összes számla összes letölthető fájlját lementi (számla PDF, számla XML, terhelési összesítő, ...).
-- **Nem gatyázik:** ha valamit már letöltött, legközelebb átugorja, vagyis mindig csak az új számláidat fogja lementeni.
-- **Ért a szóból:** többféle módon beállítható, akár környezeti változókkal, akár konfigurációs fájllal, de még parancssori argumentumokkal is.
-- **Tettre kész:** a parancssoros interfész és az inkrementális letöltési funkció miatt ideális arra, hogy ütemezett feladatként használd.
-- **Rendszerető:** a letöltött fájlokat mappákba rendezi, szolgáltató, szolgáltatás és dátum szerint.
-- **Kíméletes:** a lapok és fájlok letöltése között másodperceket vár, hogy a **Díjnet** szerverét ne terhelje túl.
-
-
+-   **Mindent visz:** az összes számla összes letölthető fájlját lementi (számla PDF, számla XML, terhelési összesítő, ...).
+-   **Nem gatyázik:** ha valamit már letöltött, legközelebb átugorja, vagyis mindig csak az új számláidat fogja lementeni.
+-   **Ért a szóból:** többféle módon beállítható, akár környezeti változókkal, akár konfigurációs fájllal, de még parancssori argumentumokkal is.
+-   **Tettre kész:** a parancssoros interfész és az inkrementális letöltési funkció miatt ideális arra, hogy ütemezett feladatként használd.
+-   **Rendszerető:** a letöltött fájlokat mappákba rendezi, szolgáltató, szolgáltatás és dátum szerint.
+-   **Kíméletes:** a lapok és fájlok letöltése között másodperceket vár, hogy a **Díjnet** szerverét ne terhelje túl.
 
 ## Használata
 
-Ahhoz, hogy a programot futtatni tudd, telepítened kell a [Node.js](https://nodejs.org/en/) legalább 12-es verzióját.
+Ahhoz, hogy a programot futtatni tudd, telepítened kell a [Node.js](https://nodejs.org/en/) legalább 20-as verzióját.
 
 A **Díjnet Bot** önmagában egyetlen fájl (`dijnet-bot.js`), melyet [innen tudsz letölteni](https://github.com/juzraai/dijnet-bot/releases/latest).
 
@@ -39,15 +31,13 @@ $ node dijnet-bot
 
 A program meg fogja kérdezi a **Díjnet** belépési adataidat, majd alapértelmezett beállításokkal megkezdi a számlák learatását.
 
-
-
 ## Beállítás
 
 A program némely paramétere állítható (pl. kimeneti mappa, kérések közti várakozás). Ha az alapértelmezett beállítások nem felelnek meg, 3 módon tudod a programot konfigurálni:
 
-- konfigfájllal
-- környezeti változókkal
-- parancssori argumentumokkal
+-   konfigfájllal
+-   környezeti változókkal
+-   parancssori argumentumokkal
 
 A konfigfájlt `.env` néven kell elmenteni abba a mappába, ahonnan a **Díjnet Bot**-ot futtatod. A beállítási lehetőségekről és a fájl formátumáról a [.env.example fájl](https://github.com/juzraai/dijnet-bot/blob/master/.env.example) ad útbaigazítást.
 
@@ -63,20 +53,18 @@ Ezek a paraméterek felülbírálják a környezeti változókat is.
 
 Ha a program egyik fenti módon sem kap **Díjnet** felhasználónevet vagy jelszót, akkor indításkor meg fogja ezeket kérdezni.
 
-
-
 ## Működése
 
 1. Bejelentkezik **Díjnet**-en (elküldi a login űrlapot)
 1. Rámegy a "Számlák keresése" oldalra
 1. Elküldi az űrlapot üresen, hogy megkapja az összes számlát
 1. Kiolvassa a számlák adatait, majd végigmegy a számlákon:
-	1. Ha ennek a számlának a fájljait még nem töltötte le, akkor:
-		1. Megnyitja a számla adatlapját
-		1. Rámegy a "Letöltés" fülre
-		1. Letölti az összes fájlt, ami be van linkelve
-		1. Megjelöli ezt a számlát, hogy a program későbbi futtatásánál ne töltse le újra
-		1. Visszamegy a számla listához
+    1. Ha ennek a számlának a fájljait még nem töltötte le, akkor:
+        1. Megnyitja a számla adatlapját
+        1. Rámegy a "Letöltés" fülre
+        1. Letölti az összes fájlt, ami be van linkelve
+        1. Megjelöli ezt a számlát, hogy a program későbbi futtatásánál ne töltse le újra
+        1. Visszamegy a számla listához
 
 Az eredmény, vagyis **a letöltött fájlok a kimeneti mappába kerülnek** (alapértelmezésként `./szamlak`), szolgáltató, szolgáltatás és dátum bontásban. A könyvtárszerkezet az alábbiak szerint alakul:
 
@@ -93,14 +81,12 @@ A program minden alkalommal, **mielőtt kérést küld a Díjnet felé, vár né
 
 A program a kimeneti mappán belül a `kesz.txt` fájlba beírja azon számlák azonosítóját (számlaszám/bizonylatszám), amelyeknek minden fájlját sikerült lementeni. Így a következő futtatásakor ezeket a számlákat át tudja ugrani, vagyis **csak az újabb (vagy korábban nem lementett) számlákkal fog foglalkozni.**
 
-
-
 ## Motiváció
 
 A **Díjnet** az ingyenes szolgáltatása keretében **csak bizonyos ideig őrzi meg** a számlákat. Ha később is el akarjuk érni a fájlokat, akkor
 
-- vagy [fizetünk a **SzámlaPlusz** funkcióért](https://www.dijnet.hu/ekonto/docs/hu/szamlaplusz_tajekoztato.pdf) (évi ~1 000 Ft),
-- vagy rendszeresen **lementjük kézzel**, ami fáradtságos munka lehet.
+-   vagy [fizetünk a **SzámlaPlusz** funkcióért](https://www.dijnet.hu/ekonto/docs/hu/szamlaplusz_tajekoztato.pdf) (évi ~1 000 Ft),
+-   vagy rendszeresen **lementjük kézzel**, ami fáradtságos munka lehet.
 
 A **Díjnet Bot** az utóbbi megoldás **automatizálására szolgál**, vagyis gyakorlatilag helyettünk kattintgat végig a számlákon és a **Díjnet** által biztosított letöltési linkeken.
 
@@ -108,17 +94,13 @@ A fenti két út természetesen nem zárja ki egymást, a **SzámlaPlusz funkci�
 
 Az automatizálási feladatra már mások is készítettek szkripteket (pl. [wolandmaster/dijnet-dump](https://github.com/wolandmaster/dijnet-dump)). Én ezeket nem próbáltam ki, mert kihívást éreztem abban, hogy magam is összerakjak egy ilyen programot nulláról, elsősorban saját célra, saját igények szerint.
 
-
-
 ## Licensz
 
 [MIT](LICENSE)
 
-
-
 ## Közreműködés
 
-Ha kérdésed, ötleted, igényed (feature request) van, bátran nyiss egy ticketet az [*Issues* fülön](https://github.com/juzraai/dijnet-bot/issues)! :)
+Ha kérdésed, ötleted, igényed (feature request) van, bátran nyiss egy ticketet az [_Issues_ fülön](https://github.com/juzraai/dijnet-bot/issues)! :)
 
 Ha hibát találtál, kérlek szintén jelezd ugyanitt, megadva minél több részletet a hibához (hibaüzenet, `error.log` fájl tartalma, vagy elvárt és tapasztalt működés különbsége).
 

@@ -1,7 +1,7 @@
 /**
  * Represents a bill's downloadable file.
  */
-class BillFile {
+export default class BillFile {
 	/**
 	 * @param {string} name Display name
 	 * @param {string} dijnetPath Díjnet path, relative to `DijnetBrowser`'s `baseUrl`
@@ -11,5 +11,3 @@ class BillFile {
 		this.dijnetPath = dijnetPath;
 	}
 }
-
-module.exports = BillFile;

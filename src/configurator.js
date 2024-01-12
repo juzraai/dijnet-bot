@@ -1,7 +1,7 @@
-const dotenv = require('dotenv');
-const prompts = require('prompts');
-const cli = require('./cli');
-const Config = require('./config');
+import dotenv from 'dotenv';
+import prompts from 'prompts';
+import { getCli } from './cli.js';
+import Config from './config.js';
 
 /**
  * Fetches configuration from environment variables (.env), command line
@@ -10,15 +10,16 @@ const Config = require('./config');
  *
  * @returns {Config} Configuration
  */
-async function getConfig() {
+export async function getConfig() {
 	const config = new Config(); // default configuration
-	const program = cli.getCli(config);
+	const program = getCli(config);
 
 	loadEnv(config);
 	loadArgs(program, config);
 	if (!config.user || !config.pass) {
 		await loadPrompts(config);
 	}
+
 	if (!config.user || !config.pass) {
 		program.help();
 	}
@@ -85,6 +86,7 @@ function loadArgs(program, config) {
 		config.quiet = true;
 		config.verbose = false;
 	}
+
 	return config;
 }
 
@@ -97,13 +99,13 @@ async function loadPrompts(config) {
 		{
 			type: 'text',
 			name: 'user',
-			message: 'Díjnet felhasználóneved'
+			message: 'Díjnet felhasználóneved',
 		},
 		{
 			type: 'password',
 			name: 'pass',
-			message: 'Díjnet jelszavad'
-		}
+			message: 'Díjnet jelszavad',
+		},
 	];
 
 	console.log('');
@@ -113,5 +115,3 @@ async function loadPrompts(config) {
 	config.pass = response.pass;
 	return config;
 }
-
-module.exports = { getConfig };
