@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/juzraai/dijnet-bot/compare/v2.1.10...v3.0.0) (2024-01-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* program refaktorálva Node v20-ra (potenciálisan javítja #34-et)
+
+### Features
+
+* program és Node verzió beépítve error.log-ba ([c18ea7c](https://github.com/juzraai/dijnet-bot/commit/c18ea7c3de762f95c215bb3992cf6b192cf3f0be))
+* program refaktorálva Node v20-ra (potenciálisan javítja [#34](https://github.com/juzraai/dijnet-bot/issues/34)-et) ([ff0bc58](https://github.com/juzraai/dijnet-bot/commit/ff0bc584d3aed0a996629fc9147acf619ea9281c))
+
 ### [2.1.10](https://github.com/juzraai/dijnet-bot/compare/v2.1.9...v2.1.10) (2024-01-07)
 
 
