@@ -1,13 +1,15 @@
 import fs from 'fs';
 import esbuild from 'esbuild';
 
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+
 const OUTPUT_FILE = 'dijnet-bot.js';
 
 const banner = `
 /*
-	Díjnet Bot v${process.env.npm_package_version}
-	${process.env.npm_package_homepage}
-	Licensed under ${process.env.npm_package_license}
+	Díjnet Bot v${packageJson.version}
+	${packageJson.homepage}
+	Licensed under ${packageJson.license}
 */
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
