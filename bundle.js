@@ -2,6 +2,7 @@ import fs from 'fs';
 import esbuild from 'esbuild';
 
 const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+// reading instead of importing is intentional here
 
 const OUTPUT_FILE = 'dist/dijnet-bot.cjs';
 

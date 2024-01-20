@@ -1,6 +1,6 @@
 import fs from 'fs';
 import kleur from 'kleur';
-import packageJson from '../package.json' assert { type: 'json' };
+import packageJson from './packageJson.cjs';
 import Config from './config.js';
 
 function getTimestamp() {
