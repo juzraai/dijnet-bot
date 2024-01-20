@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/juzraai/dijnet-bot/compare/v3.0.0...v3.0.1) (2024-01-20)
+
+
+### Bug Fixes
+
+* bundle generálás javítva ([38b43e1](https://github.com/juzraai/dijnet-bot/commit/38b43e1d2c8054fc7d860827df9a05209f28b0ff))
+* JSON import warning javítva ([94131b8](https://github.com/juzraai/dijnet-bot/commit/94131b81d93919978bc8a8d5ba4763a5a3da93a8))
+
 ## [3.0.0](https://github.com/juzraai/dijnet-bot/compare/v2.1.10...v3.0.0) (2024-01-12)
 
 
