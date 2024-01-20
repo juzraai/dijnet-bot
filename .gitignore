@@ -1,8 +1,6 @@
+dist/
 node_modules/
-scripts/token.sh
 szamlak/
 temp/
 .env
-dijnet-bot.js
 error.log
-src/_OLD

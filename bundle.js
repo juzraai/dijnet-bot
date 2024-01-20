@@ -3,7 +3,7 @@ import esbuild from 'esbuild';
 
 const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 
-const OUTPUT_FILE = 'dijnet-bot.js';
+const OUTPUT_FILE = 'dist/dijnet-bot.cjs';
 
 const banner = `
 /*
@@ -11,8 +11,6 @@ const banner = `
 	${packageJson.homepage}
 	Licensed under ${packageJson.license}
 */
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 `;
 
 console.log('Bundling...');
@@ -23,9 +21,11 @@ await esbuild.build({
 	},
 	bundle: true,
 	entryPoints: ['index.js'],
+	format: 'cjs',
 	minify: true,
 	outfile: OUTPUT_FILE,
 	platform: 'node',
+	target: 'node20',
 });
 console.timeEnd('Bundling done in');
-console.log(OUTPUT_FILE, Math.round((fs.statSync('dijnet-bot.js').size / 1024) * 10) / 10, 'KB');
+console.log(OUTPUT_FILE, Math.round((fs.statSync(OUTPUT_FILE).size / 1024) * 10) / 10, 'KB');
