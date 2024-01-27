@@ -38,11 +38,10 @@ export default class DijnetAgent {
 	/**
 	 * Submits bill search form.
 	 */
-	async submitBillSearchForm() {
+	async submitBillSearchForm(token) {
 		this.checkIfLoggedIn();
 		this.checkBillSearchForm();
-		const body =
-			'vfw_form=szamla_search_submit&vfw_coll=szamla_search_params&regszolgid=&szlaszolgid=&datumtol=&datumig=';
+		const body = `vfw_form=szamla_search_submit&vfw_token=${token}&vfw_coll=szamla_search_params&szlaszolgnev=&regszolgid=&datumtol=&datumig=`;
 		await this.browser.submit('/control/szamla_search_submit', body);
 	}
 

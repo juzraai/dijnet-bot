@@ -2,7 +2,11 @@
 import { getConfig } from './configurator.js';
 import DijnetAgent from './dijnet-agent.js';
 import DijnetBrowser from './dijnet-browser.js';
-import { parseBillDownloads, parseBillSearchResults } from './dijnet-parser.js';
+import {
+	parseBillDownloads,
+	parseBillSearchResults,
+	parseBillSearchToken,
+} from './dijnet-parser.js';
 import Logger from './logger.js';
 import Repo from './repo.js';
 
@@ -24,7 +28,8 @@ export async function start() {
 
 	logger.info('Számlák keresése...');
 	await agent.openBillSearch();
-	await agent.submitBillSearchForm();
+	const token = parseBillSearchToken(agent.browser.lastNavigationResponse.body);
+	await agent.submitBillSearchForm(token);
 	let bills = parseBillSearchResults(agent.browser.lastNavigationResponse.body);
 	const allBillsCount = bills.length;
 	bills = bills.filter(repo.isNew.bind(repo));

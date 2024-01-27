@@ -3,6 +3,16 @@ import deburr from 'lodash.deburr';
 import Bill from './bill.js';
 import BillFile from './bill-file.js';
 
+export function parseBillSearchToken(body) {
+	const $ = cheerio.load(body);
+	const token = $('input[name=vfw_token]')?.attr('value');
+	if (!token) {
+		throw new Error('Nem találom a vfw_token-t.');
+	}
+
+	return token;
+}
+
 /**
  * @param {string} body Response body, it should be the HTML code of a bill list page
  * @returns {Bill[]} Bills' metadata
