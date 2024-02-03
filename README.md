@@ -1,3 +1,9 @@
+⛔ **Kérlek használd a [legújabb kiadást](https://github.com/juzraai/dijnet-bot/releases/latest), melynek kódját a [master branch](https://github.com/juzraai/dijnet-bot/tree/master)-en találod.**
+
+Ezen a `v2-backports` branch-en határozatlan ideig támogatom a program 2-es főverzióját.
+
+---
+
 # <div align="center"><img src="img/header.svg" width="400" title="Díjnet Bot" alt="Díjnet Bot - Az összes számlád még egy helyen"></div>
 
 
