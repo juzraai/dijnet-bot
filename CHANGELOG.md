@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.11](https://github.com/juzraai/dijnet-bot/compare/v2.1.10...v2.1.11) (2024-02-03)
+
+
+### Bug Fixes
+
+* [#35](https://github.com/juzraai/dijnet-bot/issues/35) -ös hiba javítása backport-olva ([b3ee3ad](https://github.com/juzraai/dijnet-bot/commit/b3ee3adaa5725b4e98f8c5c8f043a2bb2d5ddfef))
+
 ### [2.1.10](https://github.com/juzraai/dijnet-bot/compare/v2.1.9...v2.1.10) (2024-01-07)
 
 
