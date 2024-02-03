@@ -23,7 +23,8 @@ async function start() {
 
 	logger.info('Számlák keresése...');
 	await agent.openBillSearch();
-	await agent.submitBillSearchForm();
+	const token = parser.parseBillSearchToken(agent.browser.lastNavigationResponse.body);
+	await agent.submitBillSearchForm(token);
 	let bills = parser.parseBillSearchResults(agent.browser.lastNavigationResponse.body);
 	const allBillsCount = bills.length;
 	bills = bills.filter(repo.isNew.bind(repo));

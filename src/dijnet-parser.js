@@ -3,6 +3,16 @@ const deburr = require('lodash.deburr');
 const Bill = require('./bill');
 const BillFile = require('./bill-file');
 
+function parseBillSearchToken(body) {
+	const $ = cheerio.load(body);
+	const token = $('input[name=vfw_token]')?.attr('value');
+	if (!token) {
+		throw new Error('Nem találom a vfw_token-t.');
+	}
+
+	return token;
+}
+
 /**
  * @param {string} body Response body, it should be the HTML code of a bill list page
  * @returns {Bill[]} Bills' metadata
@@ -71,5 +81,6 @@ function normalize(s) {
 module.exports = {
 	normalize,
 	parseBillSearchResults,
+	parseBillSearchToken,
 	parseBillDownloads
 };
