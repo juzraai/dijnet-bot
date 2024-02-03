@@ -33,8 +33,6 @@
   "bin": "index.js",
   "main": "index.js",
   "scripts": {
-    "bundle": "node ./scripts/bundle.js",
-    "github": "bash ./scripts/github.sh",
     "release": "standard-version"
   },
   "dependencies": {
@@ -54,11 +52,6 @@
     "browserify-banner": "^2.0.4",
     "standard-version": "^9.0.0",
     "terser": "^4.8.0"
-  },
-  "standard-version": {
-    "scripts": {
-      "posttag": "npm run bundle"
-    }
   },
   "xo": {
     "extend": ".eslintrc"
