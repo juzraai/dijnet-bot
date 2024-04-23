@@ -76,10 +76,7 @@ export default class DijnetAgent {
 	}
 
 	checkIfLoggedIn() {
-		this.check(
-			this.config.user.toLowerCase(),
-			'Felhasználónév nem szerepel az oldalon / nem vagyunk bejelentkezve',
-		);
+		this.check('logged_menu', 'Nem vagyunk bejelentkezve');
 		this.checkBillSearchLink();
 	}
 
