@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.3](https://github.com/juzraai/dijnet-bot/compare/v3.0.2...v3.0.3) (2024-04-23)
+
+
+### Bug Fixes
+
+* bejelentkezés flexibilisebb ellenőrzése ([aa34acf](https://github.com/juzraai/dijnet-bot/commit/aa34acf5b7e45feaeb1e47550d91142de0f0147d))
+
 ### [3.0.2](https://github.com/juzraai/dijnet-bot/compare/v3.0.1...v3.0.2) (2024-01-27)
 
 
