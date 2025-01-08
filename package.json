@@ -38,7 +38,7 @@
 		"release": "standard-version && node ./bundle.js"
 	},
 	"dependencies": {
-		"cheerio": "^1.0.0-rc.3",
+		"cheerio": "1.0.0-rc.12",
 		"commander": "^5.1.0",
 		"dotenv": "^16.4.1",
 		"got": "^14.0.0",
