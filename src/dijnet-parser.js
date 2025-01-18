@@ -1,4 +1,4 @@
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 import deburr from 'lodash.deburr';
 import Bill from './bill.js';
 import BillFile from './bill-file.js';
