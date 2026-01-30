@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.4](https://github.com/juzraai/dijnet-bot/compare/v3.0.3...v3.0.4) (2026-01-30)
+
+
+### Bug Fixes
+
+* bejelentkezési paraméterek kódolása javítva ([#41](https://github.com/juzraai/dijnet-bot/issues/41)) ([46392d3](https://github.com/juzraai/dijnet-bot/commit/46392d35909cdb6d7179d76033b75658e0878b84))
+
 ### [3.0.3](https://github.com/juzraai/dijnet-bot/compare/v3.0.2...v3.0.3) (2024-04-23)
 
 
