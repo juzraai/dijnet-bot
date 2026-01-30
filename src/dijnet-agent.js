@@ -22,7 +22,11 @@ export default class DijnetAgent {
 	 * Logs in to Díjnet.
 	 */
 	async login() {
-		const body = `vfw_form=login_check_password&username=${this.config.user}&password=${this.config.pass}`;
+		const body = new URLSearchParams({
+			vfw_form: 'login_check_password',
+			username: this.config.user,
+			password: this.config.pass,
+		}).toString();
 		await this.browser.submit('/login/login_check_password', body);
 		this.checkIfLoggedIn();
 	}
