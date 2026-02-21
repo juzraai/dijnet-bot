@@ -1,0 +1,14 @@
+services:
+  dijnet-bot:
+    build: .
+    image: dijnet-bot
+    container_name: dijnet-bot
+    user: '${DOCKER_UID}:${DOCKER_GID}'
+    volumes:
+      - '${OUTPUT_DIR}:/szamlak'
+    environment:
+      TZ: Europe/Budapest
+      DIJNET_USER: ${DIJNET_USER}
+      DIJNET_PASS: ${DIJNET_PASS}
+      LOG_LEVEL: ${LOG_LEVEL:-default}
+      SLEEP: ${SLEEP:-3}

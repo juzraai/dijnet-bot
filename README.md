@@ -35,25 +35,35 @@ node dijnet-bot
 
 A program meg fogja kérdezi a **Díjnet** belépési adataidat, majd alapértelmezett beállításokkal megkezdi a számlák learatását.
 
+A programot szükség esetén a Ctrl+C megnyomásával tudod leállítani.
+
 ### Futtatás Docker konténerben
 
-Először is el kell készíteni a Docker image-et ezzel a paranccsal: `docker build -t dijnet-bot .`
-
-Utána az alábbi paranccsal tudod elindítani a programot (Linux):
+Az alábbi paranccsal tudod elindítani a programot (Linux):
 
 ```bash
+DOCKER_UID=$(id -u) DOCKER_GID=$(id -g) docker compose up
+```
+
+A beállításokat a `.env` fájlból olvassa, de `--env-file` kapcsolóval másik fájl is megadható, vagy a parancs elején is megadhatóak az értékek.
+
+Az DOCKER_UID és DOCKER_GID beállítás azért kell, hogy a Docker az aktuális felhasználóval futtassa a programot és így a letöltött számlákhoz is hozzá tudj férni.
+
+**Fontos,** hogy a kimeneti mappa létezzen, mielőtt elindítod a programoot.
+
+A programot szükség esetén a Ctrl+C megnyomásával vagy ezzel a paranccsal tudod leállítani: `docker compose down`
+
+Alternatívaként Compose nélkül is használhatod (Linux):
+
+```bash
+docker build -t dijnet-bot .
+
 docker run --rm -it \
 	--user $(id -u):$(id -g) \
 	-v ./szamlak:/szamlak \
 	--env-file .env \
 	--name=dijnet-bot dijnet-bot
 ```
-
-Az `--env-file .env` helyett a környezeti változókat `-e VÁLTOZÓ=érték` formában is megadhatod. A beállítási lehetőségekről alább olvashatsz.
-
-A `./szamlak` helyett tetszőleges kimeneti mappát megadhatsz (a kettőspont utáni részt ne módosítsd). **Fontos,** hogy a kimeneti mappát hozd létre a konténer futtatása előtt!
-
-A programot ezzel a paranccsal tudod leállítani: `docker stop dijnet-bot`
 
 ## Beállítás
 
