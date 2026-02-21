@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/juzraai/dijnet-bot/compare/v3.0.5...v3.1.0) (2026-02-21)
+
+
+### Features
+
+* Docker compose.yml és instrukciók hozzáadva ([65b1ab4](https://github.com/juzraai/dijnet-bot/commit/65b1ab41e4bbb838c0b513c2e28954b71c5aae14))
+* Dockerfile és instrukciók hozzáadva ([04644fe](https://github.com/juzraai/dijnet-bot/commit/04644fe8be790d23a9ef20af6495eb53b7a34c60))
+
 ### [3.0.5](https://github.com/juzraai/dijnet-bot/compare/v3.0.4...v3.0.5) (2026-02-21)
 
 
