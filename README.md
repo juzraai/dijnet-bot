@@ -6,38 +6,62 @@ A **Díjnet Bot** lementi az **összes [Díjnet](https://www.dijnet.hu/)-en tár
 
 ## Funkciók
 
--   **Mindent visz:** az összes számla összes letölthető fájlját lementi (számla PDF, számla XML, terhelési összesítő, ...).
--   **Nem gatyázik:** ha valamit már letöltött, legközelebb átugorja, vagyis mindig csak az új számláidat fogja lementeni.
--   **Ért a szóból:** többféle módon beállítható, akár környezeti változókkal, akár konfigurációs fájllal, de még parancssori argumentumokkal is.
--   **Tettre kész:** a parancssoros interfész és az inkrementális letöltési funkció miatt ideális arra, hogy ütemezett feladatként használd.
--   **Rendszerető:** a letöltött fájlokat mappákba rendezi, szolgáltató, szolgáltatás és dátum szerint.
--   **Kíméletes:** a lapok és fájlok letöltése között másodperceket vár, hogy a **Díjnet** szerverét ne terhelje túl.
+- **Mindent visz:** az összes számla összes letölthető fájlját lementi (számla PDF, számla XML, terhelési összesítő, ...).
+- **Nem gatyázik:** ha valamit már letöltött, legközelebb átugorja, vagyis mindig csak az új számláidat fogja lementeni.
+- **Ért a szóból:** többféle módon beállítható, akár környezeti változókkal, akár konfigurációs fájllal, de még parancssori argumentumokkal is.
+- **Tettre kész:** a parancssoros interfész és az inkrementális letöltési funkció miatt ideális arra, hogy ütemezett feladatként használd.
+- **Rendszerető:** a letöltött fájlokat mappákba rendezi, szolgáltató, szolgáltatás és dátum szerint.
+- **Kíméletes:** a lapok és fájlok letöltése között másodperceket vár, hogy a **Díjnet** szerverét ne terhelje túl.
 
 ## Használata
+
+A program futtatásának 2 fő módja van: vagy Node.js telepítéssel vagy Docker használatával.
+
+### Futtatás Node.js telepítéssel
 
 Ahhoz, hogy a programot futtatni tudd, telepítened kell a [Node.js](https://nodejs.org/en/) legalább 20-as verzióját.
 
 A **Díjnet Bot** önmagában egyetlen fájl (`dijnet-bot.cjs`), melyet [innen tudsz letölteni](https://github.com/juzraai/dijnet-bot/releases/latest).
 
-Ha duplakattintással szeretnéd futtatni (vagyis nem terminálból/parancssorból), akkor ezt a fájlt, vagy a `*.js` fájlokat az oprendszeredben hozzá kell rendelned a Node-hoz. (Windows-on: jobb klikk a fájlon -> Társítás -> Node.js vagy Másik alkalmazás -> "c:\Program Files\nodejs\node.exe")
+Ha duplakattintással szeretnéd futtatni (vagyis nem terminálból/parancssorból), akkor ezt a fájlt, vagy a `*.cjs` fájlokat az oprendszeredben hozzá kell rendelned a Node-hoz. (Windows-on: jobb klikk a fájlon -> Társítás -> Node.js vagy Másik alkalmazás -> "c:\Program Files\nodejs\node.exe")
 
-Egyéb esetben terminálból így tudod elindítani a programot (abból a könyvtárból, ahol a `dijnet-bot.js` van):
+Egyéb esetben terminálból így tudod elindítani a programot (abból a könyvtárból, ahol a `dijnet-bot.cjs` van):
 
-```
-$ node dijnet-bot
+```bash
+node dijnet-bot
 ```
 
 (Opcionális: ha letöltöd a program forráskódját, és `npm i -g` segítségével telepíted, onnantól kezdve egyszerűen a `dijnet-bot` paranccsal tudod indítani bármilyen könyvtárból.)
 
 A program meg fogja kérdezi a **Díjnet** belépési adataidat, majd alapértelmezett beállításokkal megkezdi a számlák learatását.
 
+### Futtatás Docker konténerben
+
+Először is el kell készíteni a Docker image-et ezzel a paranccsal: `docker build -t dijnet-bot .`
+
+Utána az alábbi paranccsal tudod elindítani a programot (Linux):
+
+```bash
+docker run --rm -it \
+	--user $(id -u):$(id -g) \
+	-v ./szamlak:/szamlak \
+	--env-file .env \
+	--name=dijnet-bot dijnet-bot
+```
+
+Az `--env-file .env` helyett a környezeti változókat `-e VÁLTOZÓ=érték` formában is megadhatod. A beállítási lehetőségekről alább olvashatsz.
+
+A `./szamlak` helyett tetszőleges kimeneti mappát megadhatsz (a kettőspont utáni részt ne módosítsd). **Fontos,** hogy a kimeneti mappát hozd létre a konténer futtatása előtt!
+
+A programot ezzel a paranccsal tudod leállítani: `docker stop dijnet-bot`
+
 ## Beállítás
 
 A program némely paramétere állítható (pl. kimeneti mappa, kérések közti várakozás). Ha az alapértelmezett beállítások nem felelnek meg, 3 módon tudod a programot konfigurálni:
 
--   konfigfájllal
--   környezeti változókkal
--   parancssori argumentumokkal
+- konfigfájllal
+- környezeti változókkal
+- parancssori argumentumokkal
 
 A konfigfájlt `.env` néven kell elmenteni abba a mappába, ahonnan a **Díjnet Bot**-ot futtatod. A beállítási lehetőségekről és a fájl formátumáról a [.env.example fájl](https://github.com/juzraai/dijnet-bot/blob/master/.env.example) ad útbaigazítást.
 
@@ -45,8 +69,8 @@ A `.env.example` fájlban leírt kulcs-érték párokat beállíthatod környeze
 
 A parancssori argumentumok leírása és alapértelmezett értékeik a `-h` kapcsolóval tekinthetők meg:
 
-```
-$ node dijnet-bot -h
+```bash
+node dijnet-bot -h
 ```
 
 Ezek a paraméterek felülbírálják a környezeti változókat is.
@@ -85,8 +109,8 @@ A program a kimeneti mappán belül a `kesz.txt` fájlba beírja azon számlák 
 
 A **Díjnet** az ingyenes szolgáltatása keretében **csak bizonyos ideig őrzi meg** a számlákat. Ha később is el akarjuk érni a fájlokat, akkor
 
--   vagy [fizetünk a **SzámlaPlusz** funkcióért](https://www.dijnet.hu/docs/hu/szamlaplusz_tajekoztato.pdf) (évi ~1 500 Ft),
--   vagy rendszeresen **lementjük kézzel**, ami fáradtságos munka lehet.
+- vagy [fizetünk a **SzámlaPlusz** funkcióért](https://www.dijnet.hu/docs/hu/szamlaplusz_tajekoztato.pdf) (évi ~1 500 Ft),
+- vagy rendszeresen **lementjük kézzel**, ami fáradtságos munka lehet.
 
 A **Díjnet Bot** az utóbbi megoldás **automatizálására szolgál**, vagyis gyakorlatilag helyettünk kattintgat végig a számlákon és a **Díjnet** által biztosított letöltési linkeken.
 
