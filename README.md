@@ -49,7 +49,9 @@ A beállításokat a `.env` fájlból olvassa, de `--env-file` kapcsolóval más
 
 Az DOCKER_UID és DOCKER_GID beállítás azért kell, hogy a Docker az aktuális felhasználóval futtassa a programot és így a letöltött számlákhoz is hozzá tudj férni.
 
-**Fontos,** hogy a kimeneti mappa létezzen, mielőtt elindítod a programoot.
+Ha újraépítenéd az image-et, akkor a fenti parancs végén add meg a `--build` kapcsolót.
+
+**Fontos,** hogy a kimeneti mappa létezzen, mielőtt elindítod a programot.
 
 A programot szükség esetén a Ctrl+C megnyomásával vagy ezzel a paranccsal tudod leállítani: `docker compose down`
 
