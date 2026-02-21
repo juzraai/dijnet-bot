@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.5](https://github.com/juzraai/dijnet-bot/compare/v3.0.4...v3.0.5) (2026-02-21)
+
+
+### Bug Fixes
+
+* elavult "punycode" függőség törölve (closes [#42](https://github.com/juzraai/dijnet-bot/issues/42)) ([1c9ff08](https://github.com/juzraai/dijnet-bot/commit/1c9ff08e287aed1e35980b5f041b875bfdf14414))
+
 ### [3.0.4](https://github.com/juzraai/dijnet-bot/compare/v3.0.3...v3.0.4) (2026-01-30)
 
 
