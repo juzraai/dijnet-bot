@@ -36,7 +36,7 @@ export async function getConfig() {
  * @returns {Config} The same configuration which is also updated
  */
 function loadEnv(config) {
-	dotenv.config();
+	dotenv.config({ quiet: true });
 	config.outputDir = process.env.OUTPUT_DIR || config.outputDir;
 	config.pass = process.env.DIJNET_PASS || config.pass;
 
