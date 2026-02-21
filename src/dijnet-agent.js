@@ -23,6 +23,7 @@ export default class DijnetAgent {
 	 */
 	async login() {
 		const body = new URLSearchParams({
+			// eslint-disable-next-line camelcase
 			vfw_form: 'login_check_password',
 			username: this.config.user,
 			password: this.config.pass,

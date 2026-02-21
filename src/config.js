@@ -16,7 +16,7 @@ export default class Config {
 	 * @param {boolean} verbose Verbose mode, true means every operation will be logged to standard output
 	 */
 	constructor(data) {
-		data = data || {};
+		data ||= {};
 		this.doneFile = data.doneFile || 'kesz.txt'; // relative to outputDir!
 		this.errorFile = data.errorFile || './error.log';
 		this.outputDir = data.outputDir || './szamlak';

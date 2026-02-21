@@ -15,7 +15,7 @@ export default class Bill {
 	 * @param {string} data.status Status
 	 */
 	constructor(data) {
-		data = data || {};
+		data ||= {};
 		this.rowId = data.rowId;
 		this.serviceProvider = data.serviceProvider;
 		this.billIssuerId = data.billIssuerId;
