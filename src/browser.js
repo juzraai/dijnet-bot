@@ -23,6 +23,12 @@ export default class Browser {
 			cookieJar: this.cookieJar,
 			...options,
 		});
+		// used options:
+		// method: 'GET' | 'POST'
+		// headers: Record<string, string>
+		// body: string | undefined
+		// responseType: 'buffer' | undefined
+		// encoding: 'latin1' | undefined
 	}
 
 	/**
