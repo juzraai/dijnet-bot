@@ -35,7 +35,8 @@
 	"type": "module",
 	"scripts": {
 		"bundle": "node ./bundle.js",
-		"release": "standard-version && node ./bundle.js"
+		"release": "standard-version && node ./bundle.js",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"cheerio": "^1.2.0",
@@ -58,6 +59,7 @@
 		"eslint-config-xo": "^0.50.0",
 		"prettier": "^3.8.1",
 		"standard-version": "^9.0.0",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"vitest": "^4.0.18"
 	}
 }
