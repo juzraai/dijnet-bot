@@ -30,8 +30,8 @@
 		"spider",
 		"bot"
 	],
-	"bin": "index.js",
-	"main": "index.js",
+	"bin": "index.ts",
+	"main": "index.ts",
 	"type": "module",
 	"scripts": {
 		"bundle": "node ./bundle.js",
@@ -50,12 +50,14 @@
 		"tough-cookie": "^6.0.0"
 	},
 	"devDependencies": {
+		"@types/node": "^24.11.0",
 		"browserify-banner": "^2.0.4",
 		"esbuild": "^0.27.3",
 		"eslint": "^10.0.1",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-config-xo": "^0.50.0",
 		"prettier": "^3.8.1",
-		"standard-version": "^9.0.0"
+		"standard-version": "^9.0.0",
+		"typescript": "^5.9.3"
 	}
 }

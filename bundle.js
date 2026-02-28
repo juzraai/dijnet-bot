@@ -21,12 +21,12 @@ await esbuild.build({
 		js: banner,
 	},
 	bundle: true,
-	entryPoints: ['index.js'],
+	entryPoints: ['index.ts'],
 	format: 'cjs',
 	minify: true,
 	outfile: OUTPUT_FILE,
 	platform: 'node',
-	target: 'node20',
+	target: 'node24',
 });
 console.timeEnd('Bundling done in');
 console.log(OUTPUT_FILE, Math.round((fs.statSync(OUTPUT_FILE).size / 1024) * 10) / 10, 'KB');
