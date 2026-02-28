@@ -19,7 +19,7 @@ A program futtatásának 2 fő módja van: vagy Node.js telepítéssel vagy Dock
 
 ### Futtatás Node.js telepítéssel
 
-Ahhoz, hogy a programot futtatni tudd, telepítened kell a [Node.js](https://nodejs.org/en/) legalább 20-as verzióját.
+Ahhoz, hogy a programot futtatni tudd, telepítened kell a [Node.js](https://nodejs.org/en/) legalább 24-es verzióját.
 
 A **Díjnet Bot** önmagában egyetlen fájl (`dijnet-bot.cjs`), melyet [innen tudsz letölteni](https://github.com/juzraai/dijnet-bot/releases/latest).
 
