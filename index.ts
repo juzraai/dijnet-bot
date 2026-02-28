@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import SingleInstance from 'single-instance';
-import Logger from './src/logger.js';
-import { start } from './src/main.js';
+import Logger from './src/old/logger.js';
+import { start } from './src/old/main.js';
 
 (async () => {
 	try {
