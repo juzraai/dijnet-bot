@@ -2,33 +2,36 @@ import fs from 'fs';
 import ky from 'ky';
 import { CookieJar } from 'tough-cookie';
 
-const cookieJar = new CookieJar();
-
 // exporting for testing
-export const client = ky.create({
-	headers: {
-		accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-		'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7',
-		'user-agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:148.0) Gecko/20100101 Firefox/148.0',
-	},
-	hooks: {
-		beforeRequest: [
-			async (request) => {
-				const cookies = await cookieJar.getCookieString(request.url);
-				request.headers.set('cookie', cookies);
-			},
-		],
-		afterResponse: [
-			async (_request, _options, response) => {
-				const cookies = response.headers.getSetCookie();
-				for (const cookie of cookies) {
-					await cookieJar.setCookie(cookie, response.url);
-				}
-				return response;
-			},
-		],
-	},
-});
+export function createClientWithCookieJar(cookieJar = new CookieJar()) {
+	const client = ky.create({
+		headers: {
+			accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+			'accept-language': 'hu-HU,hu;q=0.9,en-US;q=0.8,en;q=0.7',
+			'user-agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:148.0) Gecko/20100101 Firefox/148.0',
+		},
+		hooks: {
+			beforeRequest: [
+				async (request) => {
+					const cookies = await cookieJar.getCookieString(request.url);
+					request.headers.set('cookie', cookies);
+				},
+			],
+			afterResponse: [
+				async (_request, _options, response) => {
+					const cookies = response.headers.getSetCookie();
+					for (const cookie of cookies) {
+						await cookieJar.setCookie(cookie, response.url);
+					}
+					return response;
+				},
+			],
+		},
+	});
+	return { client, cookieJar };
+}
+
+const { client } = createClientWithCookieJar();
 
 function request(url: string, formData: FormData | null = null) {
 	return client(url, {
